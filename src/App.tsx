@@ -1,8 +1,8 @@
 import "./App.css";
-import Home from "./Components/Home/Home";
+import Home from "./Pages/Home/Home.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
-import PlayerNames from "./Components/PlayerNames/PlayerNames.tsx";
-import GameBoard from "./Components/Maze/GameBoard.tsx";
+import PlayerNames from "./Pages/PlayerNames/PlayerNames.tsx";
+import GameBoard from "./Pages/Maze/GameBoard.tsx";
 
 function App() {
   return (
