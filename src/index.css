@@ -1,0 +1,24 @@
+[data-theme="light"] {
+  --bg-color: white;
+  --text-color: black;
+}
+
+[data-theme="Dark"] {
+  --bg-color: white;
+  --text-color: black;
+}
+
+body {
+  color: antiquewhite;
+  background-color: rgb(53, 53, 53);
+  height: 100vh;
+  width: 100vw;
+  padding: 0px;
+  margin: 0px;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(67, 67, 80);
+}
