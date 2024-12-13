@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // Types for the state
 interface AboutPlayersState {
@@ -37,20 +37,17 @@ const About_Players = createSlice({
     CurrentTurn: "",
   } as AboutPlayersState,
   reducers: {
-    SetPlayerNum(state, action: PayloadAction<number>) {
+    SetPlayerNum(state, action) {
       state.NoOfPlayers = action.payload;
     },
-    SetPlayerDetails(state, action: PayloadAction<object>) {
+    SetPlayerDetails(state, action) {
       state.PlayersDetails.push(action.payload);
     },
-    SetLeftTime(
-      state,
-      action: PayloadAction<{ Player: string; Time: number }>
-    ) {
+    SetLeftTime(state, action) {
       const { Player, Time } = action.payload;
       state.TimeLeft[Player] = Time;
     },
-    SetCurrentTurn(state, action: PayloadAction<string>) {
+    SetCurrentTurn(state, action) {
       state.CurrentTurn = action.payload;
     },
   },
@@ -67,13 +64,13 @@ const Board_Settings = createSlice({
     isResetGame: false,
   } as BoardSettingsState,
   reducers: {
-    SetTypeOfCards(state, action: PayloadAction<string>) {
+    SetTypeOfCards(state, action) {
       state.TypeOfCards = action.payload;
     },
-    SetGridSize(state, action: PayloadAction<number>) {
+    SetGridSize(state, action) {
       state.GridSize = action.payload;
     },
-    SetTimeForEachPlayer(state, action: PayloadAction<number>) {
+    SetTimeForEachPlayer(state, action) {
       state.TimeForEachPlayer = action.payload;
     },
     SetIsPlayStart(state) {
@@ -93,7 +90,7 @@ const Players_Score = createSlice({
     LeaderBoard: [],
   } as PlayersScoreState,
   reducers: {
-    SetScore(state, action: PayloadAction<string>) {
+    SetScore(state, action) {
       const player = action.payload;
       if (state.Score[player]) {
         state.Score[player] += 1;
@@ -101,7 +98,7 @@ const Players_Score = createSlice({
         state.Score[player] = 1;
       }
     },
-    SetLeaderBoard(state, action: PayloadAction<object>) {
+    SetLeaderBoard(state, action) {
       state.LeaderBoard.push(action.payload);
     },
   },
@@ -116,11 +113,22 @@ const Cards_Data = createSlice({
     IsSolved: [],
   } as CardsDataState,
   reducers: {
-    SetIsFlipped(state, action: PayloadAction<number>) {
+    SetIsFlipped(state, action) {
       state.IsFlipped.push(action.payload);
     },
-    SetIsSolved(state, action: PayloadAction<number>) {
+    SetIsSolved(state, action) {
       state.IsSolved.push(action.payload);
+    },
+  },
+});
+
+// Theme
+const App_Theme = createSlice({
+  name: "App_Theme",
+  initialState: { state: false },
+  reducers: {
+    SetTheme(state, action) {
+      state.state = action.payload;
     },
   },
 });
@@ -137,6 +145,7 @@ export const {
 } = Board_Settings.actions;
 export const { SetLeaderBoard, SetScore } = Players_Score.actions;
 export const { SetIsFlipped, SetIsSolved } = Cards_Data.actions;
+export const { SetTheme } = App_Theme.actions;
 
 // Export reducers
 export default {
@@ -144,4 +153,5 @@ export default {
   Board: Board_Settings.reducer,
   products: Players_Score.reducer,
   Cards: Cards_Data.reducer,
+  Theme: App_Theme.reducer,
 };
