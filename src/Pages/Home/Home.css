@@ -1,7 +1,18 @@
+[data-theme="Light"] {
+  --font-weight: 600;
+  --btn-color: rgb(194, 193, 193);
+}
+
+[data-theme="Dark"] {
+  --font-weight: 500;
+  --btn-color: rgb(227, 224, 224);
+}
+
 /* Home container rapper */
 .HomeContainer {
-  height: 50%;
-  width: 35%;
+  /* height: 50%; */
+  /* width: 33%; */
+  padding: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -9,11 +20,11 @@
 /* Title rapper for name "Brain Buster" */
 .Title {
   font-family: "Londrina Outline", sans-serif;
-  font-weight: 500;
+  font-weight: var(--font-weight);
   font-style: normal;
   flex: 1;
   margin: 8px 8px 6px 8px;
-  font-size: 4.3rem;
+  font-size: 4.5rem;
   text-align: center;
 }
 
@@ -37,13 +48,14 @@
   font-weight: 500;
   font-style: normal;
   display: flex;
-  border: 1px dotted rgb(0, 17, 255);
+  border: 1px solid rgb(126, 125, 125);
   flex: 1;
   margin: 0.8rem;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+  padding: 10px;
 }
 
 .NoOfPlayers:hover,
@@ -54,17 +66,19 @@
 }
 
 /* Next Button */
-.NextButton {
+.NextButton,
+.NextButtonactive {
   font-family: "Atma", system-ui;
-  font-weight: 550;
+  font-weight: 500;
   font-style: normal;
   font-size: 2rem;
   flex: 0.5;
   margin: 6px 8px 8px 8px;
   border-radius: 6px;
+  background-color: var(--btn-color);
 }
 
-.NextButton:hover {
+.NextButtonactive:hover {
   position: relative;
   background-color: rgb(172, 173, 173);
   bottom: -1px;
