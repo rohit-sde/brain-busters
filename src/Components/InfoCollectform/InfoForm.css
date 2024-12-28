@@ -1,0 +1,22 @@
+/* Wrapper for nameing inputs container */
+.nameingContainer {
+  /* border: 1px solid white; */
+  display: inline-block;
+  flex: 1;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+/* Player info form container */
+.playerInfo {
+  display: flex;
+  border: 1px solid white;
+  padding: 13px 10px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
+
+/* get name from input of a player */
+.nameInput {
+  flex: 2;
+}
