@@ -52,7 +52,7 @@ const Home = () => {
         </span>
       </div>
       <button
-        className="NextButton"
+        className={`NextButton${playerCount !== 0 ? "active" : ""}`}
         onClick={NextButtonHandler}
         disabled={playerCount === 0}
       >
