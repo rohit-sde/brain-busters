@@ -31,7 +31,7 @@ interface CardsDataState {
 const About_Players = createSlice({
   name: "About_Players",
   initialState: {
-    NoOfPlayers: 1,
+    NoOfPlayers: 0,
     PlayersDetails: [],
     TimeLeft: {},
     CurrentTurn: "",

@@ -1,24 +1,34 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { SetTheme } from "../../Store/AboutGame";
+import "./Themer.css";
 
 const Themer = () => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.Theme);
-  console.log(value);
-  // const style = {};
+  // const value = useSelector((state) => state.Theme);
+  // console.log(value);
+  useEffect(() => {
+    document
+      .getElementById("root")
+      ?.setAttribute("data-theme", `${checked ? "Dark" : "Light"}`);
+    return () => document.getElementById("root")?.removeAttribute("data-theme");
+  }, [checked]);
   return (
     <>
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={() => {
-          setChecked((p) => !p);
-          console.log(checked);
-          dispatch(SetTheme(checked));
-        }}
-      />
+      <label className="inputHolder">
+        <input
+          type="checkbox"
+          checked={checked}
+          style={{ display: "hidden" }}
+          onChange={() => {
+            setChecked((p) => !p);
+            console.log(checked);
+            dispatch(SetTheme(checked));
+          }}
+        />
+        <span className="slider"></span>
+      </label>
     </>
   );
 };
