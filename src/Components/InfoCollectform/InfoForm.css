@@ -1,3 +1,11 @@
+/* [data-theme="Light"] {
+  --input-color: rgb(194, 193, 193);
+}
+
+[data-theme="Dark"] {
+  --input-color: rgb(73, 73, 73);
+} */
+
 /* Wrapper for nameing inputs container */
 .nameingContainer {
   /* border: 1px solid white; */
@@ -11,12 +19,45 @@
 .playerInfo {
   display: flex;
   border: 1px solid white;
-  padding: 13px 10px;
+  padding: 10px 10px;
   margin-bottom: 4px;
   border-radius: 4px;
 }
 
 /* get name from input of a player */
 .nameInput {
-  flex: 2;
+  font-family: monospace;
+  background-color: beige;
+  border: 1px solid rgb(19, 82, 255);
+  flex: 3;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  padding: 3px 6px;
+}
+
+/* editedName is class for span tag in which our name shows when edit button is disabled */
+
+.editedName {
+  font-family: monospace;
+  /* background-color: rgb(161, 62, 62); */
+  /* border: 1px solid rgb(53, 143, 61); */
+  flex: 6;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  padding: 3px 0px;
+}
+
+/* edit btn for edit name */
+.editButton {
+  flex: 1;
+}
+
+/* emoji face for player acc to her name */
+.emojiFace {
+  flex: 1;
+}
+
+/* Gender */
+.genderBtn {
+  flex: 1;
 }
