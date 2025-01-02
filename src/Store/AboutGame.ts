@@ -39,9 +39,22 @@ const About_Players = createSlice({
   reducers: {
     SetPlayerNum(state, action) {
       state.NoOfPlayers = action.payload;
+      Array(action.payload)
+        .fill(null)
+        .map((_, i) => {
+          state.PlayersDetails.push({
+            playerName: `Player ${i + 1}`,
+            character: "",
+            gender: " ",
+          });
+        });
     },
     SetPlayerDetails(state, action) {
       state.PlayersDetails.push(action.payload);
+    },
+    updatePlayerDetails(state, action) {
+      state.PlayersDetails[action.payload.id].playerName =
+        action.payload.editedValue;
     },
     SetLeftTime(state, action) {
       const { Player, Time } = action.payload;
@@ -134,8 +147,13 @@ const App_Theme = createSlice({
 });
 
 // Export actions
-export const { SetPlayerNum, SetPlayerDetails, SetLeftTime, SetCurrentTurn } =
-  About_Players.actions;
+export const {
+  SetPlayerNum,
+  SetPlayerDetails,
+  updatePlayerDetails,
+  SetLeftTime,
+  SetCurrentTurn,
+} = About_Players.actions;
 export const {
   SetGridSize,
   SetIsPlayStart,
