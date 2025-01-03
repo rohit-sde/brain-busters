@@ -1,10 +1,16 @@
-/* [data-theme="Light"] {
-  --input-color: rgb(194, 193, 193);
+[data-theme="Light"] {
+  --border-color: #3d3d3d;
+  --input-color: #414141;
+  --boxshadow-color: #696748;
+  --text-color: #444125;
 }
 
 [data-theme="Dark"] {
-  --input-color: rgb(73, 73, 73);
-} */
+  --border-color: #dedede;
+  --input-color: #414141;
+  --boxshadow-color: #9a9773;
+  --text-color: #bebb9a;
+}
 
 /* Wrapper for nameing inputs container */
 .nameingContainer {
@@ -18,7 +24,7 @@
 /* Player info form container */
 .playerInfo {
   display: flex;
-  border: 1px solid white;
+  border: 1px solid var(--border-color);
   padding: 10px 10px;
   margin-bottom: 4px;
   border-radius: 4px;
@@ -27,20 +33,25 @@
 /* get name from input of a player */
 .nameInput {
   font-family: monospace;
-  background-color: beige;
-  border: 1px solid rgb(19, 82, 255);
+  background-color: var(--input-color);
+  /* color: var(--text-color); */
+  border: 0px;
   flex: 3;
   border-radius: 4px;
   font-size: 1.1rem;
+  margin-right: 4px;
   padding: 3px 6px;
+  box-shadow: inset 0px -1.5px var(--boxshadow-color);
+}
+
+.nameInput:focus-visible {
+  outline: none;
 }
 
 /* editedName is class for span tag in which our name shows when edit button is disabled */
 
 .editedName {
   font-family: monospace;
-  /* background-color: rgb(161, 62, 62); */
-  /* border: 1px solid rgb(53, 143, 61); */
   flex: 6;
   border-radius: 4px;
   font-size: 1.1rem;

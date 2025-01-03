@@ -1,11 +1,11 @@
 [data-theme="Light"] {
-  --bg-color: white;
+  --bg-color: beige;
   --text-color: black;
 }
 
 [data-theme="Dark"] {
   --bg-color: #1f1e1e;
-  --text-color: #e8e8e8;
+  --text-color: #f0f0f0;
 }
 /* :root {
   --bg-color: #1f1e1e;
