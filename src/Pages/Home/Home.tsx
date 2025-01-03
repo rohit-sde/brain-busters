@@ -1,8 +1,9 @@
 // Style
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Home.css";
 
 import { SetPlayerNum } from "../../Store/AboutGame.ts";
+import value from "../../Store/Store.ts";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 
@@ -10,6 +11,14 @@ const Home = () => {
   const [playerCount, SetPlayerCount] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const isOk = value.getState().About.NoOfPlayers === 0;
+
+  useEffect(() => {
+    if (!isOk) {
+      navigate("/PlayerNameing");
+    }
+  }, []);
 
   function NextButtonHandler() {
     dispatch(SetPlayerNum(playerCount));

@@ -45,7 +45,8 @@ const About_Players = createSlice({
           state.PlayersDetails.push({
             playerName: `Player ${i + 1}`,
             character: "",
-            gender: " ",
+            gender: "M",
+            isInput: false,
           });
         });
     },
