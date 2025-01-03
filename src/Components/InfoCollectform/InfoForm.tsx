@@ -1,53 +1,66 @@
-import { useRef, useState } from "react";
+import { createRef, useRef, useState } from "react";
 import value from "../../Store/Store.ts";
 import "./InfoForm.css";
-import { useDispatch } from "react-redux";
-import { updatePlayerDetails } from "../../Store/AboutGame.ts";
+
+interface Player {
+  playerName: string;
+  isInput: boolean;
+  character: string;
+  gender: string;
+}
 
 const InfoForm = () => {
-  const [isSelected, setisSelected] = useState<Record<number, boolean>>({
-    0: false,
-    1: false,
-    2: false,
-    3: false,
-  });
-  const inputref = useRef("");
-  const dispatch = useDispatch();
-  const Playersinfo = value.getState().About.PlayersDetails;
-  console.log(value.getState().About.PlayersDetails);
+  const [playersinfo, setPlayersinfo] = useState<Player[]>(
+    value.getState().About.PlayersDetails as Player[]
+  );
+  const inputRefs = useRef<React.RefObject<HTMLInputElement>[]>(
+    playersinfo.map(() => createRef())
+  );
   function handleEditBtn(i: number) {
-    if (isSelected[i]) {
-      dispatch(
-        updatePlayerDetails({ id: i, editedValue: inputref.current.value })
-      );
-      return setisSelected((prev) => ({ ...prev, [i]: !prev[i] }));
-    }
-    setisSelected((prev) => {
-      const newState = Object.keys(prev).reduce((acc, key) => {
-        acc[key] = key === String(i);
-        return acc;
-      }, {});
-      console.log(newState);
-      return { ...newState };
+    setPlayersinfo((prev) => {
+      return prev.map((player: object, k: number) => {
+        if (k === i && inputRefs?.current[i]?.current?.value) {
+          return {
+            ...player,
+            playerName: inputRefs?.current[i]?.current.value,
+            isInput: !player.isInput,
+          };
+        }
+        if (k === i) {
+          return {
+            ...player,
+            isInput: !player.isInput,
+          };
+        }
+        return { ...player, isInput: false };
+      });
     });
   }
   return (
     <div className="nameingContainer">
-      {Playersinfo.map((player, i: number) => {
-        console.log(player);
+      {playersinfo?.map((player: object, i: number) => {
         return (
           <div className="playerInfo" key={i}>
-            {isSelected[i] ? (
+            {player?.isInput ? (
               <input
                 className="nameInput"
                 defaultValue={player?.playerName}
-                ref={inputref}
+                ref={inputRefs.current[i]}
+                onKeyDown={(e: React.KeyboardEvent) => {
+                  if (e.key === "Enter") {
+                    handleEditBtn(i); // Save the player name when Enter is pressed
+                  }
+                }}
               />
             ) : (
               <span className="editedName">{player?.playerName}</span>
             )}
-            <button className="editButton" onClick={() => handleEditBtn(i)}>
-              {isSelected[i] ? "✔️" : "✏️"}
+            <button
+              className="editButton"
+              onClick={() => handleEditBtn(i)}
+              type="submit"
+            >
+              {player.isInput ? "✔️" : "✏️"}
             </button>
             <span className="emojiFace"></span>
             <button className="genderBtn">M</button>
