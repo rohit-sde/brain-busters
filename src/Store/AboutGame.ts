@@ -47,6 +47,7 @@ const About_Players = createSlice({
             character: "",
             gender: "M",
             isInput: false,
+            isLoading: true,
           });
         });
     },
