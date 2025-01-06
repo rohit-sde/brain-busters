@@ -52,7 +52,7 @@ const About_Players = createSlice({
         });
     },
     SetPlayerDetails(state, action) {
-      state.PlayersDetails.push(action.payload);
+      state.PlayersDetails = action.payload;
     },
     updatePlayerDetails(state, action) {
       state.PlayersDetails[action.payload.id].playerName =

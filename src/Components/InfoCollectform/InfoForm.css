@@ -108,3 +108,20 @@
   border: 1px solid var(--text-color);
   color: var(--input-color);
 }
+
+/* let go button for play the game */
+.LetGoBtn {
+  font-family: "Atma", system-ui;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  padding: 2px 125px;
+  border: 1px solid white;
+  user-select: none;
+}
+
+.LetGoBtn > span {
+  font-weight: 900;
+  margin-left: 45px;
+}

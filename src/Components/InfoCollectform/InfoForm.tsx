@@ -1,8 +1,11 @@
-import { createRef, useEffect, useRef, useState } from "react";
+import { createRef, Fragment, useEffect, useRef, useState } from "react";
 import { isNameOfGirl } from "../../funcs/checkfuncs.ts";
 import value from "../../Store/Store.ts";
 import "./InfoForm.css";
 import Loader from "../loader/loader.tsx";
+import { useDispatch } from "react-redux";
+import { SetPlayerDetails } from "../../Store/AboutGame.ts";
+import { useNavigate } from "react-router";
 
 interface Player {
   playerName: string;
@@ -19,6 +22,9 @@ const InfoForm = () => {
   const inputRefs = useRef<React.RefObject<HTMLInputElement>[]>(
     playersinfo.map(() => createRef())
   );
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     playersinfo.map((player, i) => {
       const URL = `https://avatar.iran.liara.run/public/${
@@ -89,6 +95,15 @@ const InfoForm = () => {
       });
     });
   }
+  function handleNextPage() {
+    dispatch(SetPlayerDetails(playersinfo));
+    navigate("/PlayerNameing/GameBoard");
+    console.log(
+      "hi our data is successfully updated...",
+      playersinfo,
+      "😁😊😁😊😊😊😊😁😁😁"
+    );
+  }
 
   async function setImageFromUrl(Url: string, i: number) {
     setPlayersinfo((prev) => {
@@ -136,56 +151,61 @@ const InfoForm = () => {
   }
 
   return (
-    <div className="nameingContainer">
-      {playersinfo?.map((player: object, i: number) => {
-        return (
-          <div className="playerInfo" key={i}>
-            {player?.isInput ? (
-              <input
-                className="nameInput"
-                defaultValue={player?.playerName}
-                ref={inputRefs.current[i]}
-                onKeyDown={(e: React.KeyboardEvent) => {
-                  if (e.key === "Enter") {
-                    handleEditBtn(i);
-                  }
+    <Fragment>
+      <div className="nameingContainer">
+        {playersinfo?.map((player: object, i: number) => {
+          return (
+            <div className="playerInfo" key={i}>
+              {player?.isInput ? (
+                <input
+                  className="nameInput"
+                  defaultValue={player?.playerName}
+                  ref={inputRefs.current[i]}
+                  onKeyDown={(e: React.KeyboardEvent) => {
+                    if (e.key === "Enter") {
+                      handleEditBtn(i);
+                    }
+                  }}
+                />
+              ) : (
+                <span className="editedName">{player?.playerName}</span>
+              )}
+              <button
+                className="editButton"
+                onClick={() => {
+                  handleEditBtn(i);
                 }}
-              />
-            ) : (
-              <span className="editedName">{player?.playerName}</span>
-            )}
-            <button
-              className="editButton"
-              onClick={() => {
-                handleEditBtn(i);
-              }}
-              type="submit"
-            >
-              {player.isInput ? "✔️" : "✏️"}
-            </button>
-            <span className="emojiFace">
-              {player.isLoading ? <Loader /> : <img src={player.character} />}
-            </span>
-            <button
-              className={`genderBtn ${player.gender === "M" && "Active"}`}
-              onClick={() => {
-                handleGender("M", i);
-              }}
-            >
-              M
-            </button>
-            <button
-              className={`genderBtn ${player.gender === "F" && "Active"}`}
-              onClick={() => {
-                handleGender("F", i);
-              }}
-            >
-              F
-            </button>
-          </div>
-        );
-      })}
-    </div>
+                type="submit"
+              >
+                {player.isInput ? "✔️" : "✏️"}
+              </button>
+              <span className="emojiFace">
+                {player.isLoading ? <Loader /> : <img src={player.character} />}
+              </span>
+              <button
+                className={`genderBtn ${player.gender === "M" && "Active"}`}
+                onClick={() => {
+                  handleGender("M", i);
+                }}
+              >
+                M
+              </button>
+              <button
+                className={`genderBtn ${player.gender === "F" && "Active"}`}
+                onClick={() => {
+                  handleGender("F", i);
+                }}
+              >
+                F
+              </button>
+            </div>
+          );
+        })}
+      </div>
+      <button className="LetGoBtn" onClick={handleNextPage}>
+        Let's Go <span>➙</span>
+      </button>
+    </Fragment>
   );
 };
 

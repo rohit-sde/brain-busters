@@ -20,9 +20,6 @@ const PlayerNames = () => {
   return (
     <div className="outterLayer">
       <InfoForm />
-      <button className="LetGoBtn">
-        Let's Go <span>➙</span>
-      </button>
     </div>
   );
 };
