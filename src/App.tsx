@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/PlayerNameing" element={<PlayerNames />} />
-            <Route path="/GameBoard" element={<GameBoard />} />
+            <Route path="/PlayerNameing/GameBoard" element={<GameBoard />} />
           </Routes>
         </BrowserRouter>
       </div>
