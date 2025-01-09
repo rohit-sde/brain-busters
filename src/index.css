@@ -1,10 +1,10 @@
 [data-theme="Light"] {
-  --bg-color: beige;
+  --bg-color: #f5f5dc;
   --text-color: black;
 }
 
 [data-theme="Dark"] {
-  --bg-color: #1f1e1e;
+  --bg-color: #2c2f2b;
   --text-color: #f0f0f0;
 }
 /* :root {

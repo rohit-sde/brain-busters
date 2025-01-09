@@ -1,20 +1,5 @@
-[data-theme="Light"] {
-  --border-color: #3d3d3d;
-  --input-color: #414141;
-  --boxshadow-color: #696748;
-  --text-color: #444125;
-}
-
-[data-theme="Dark"] {
-  --border-color: #dedede;
-  --input-color: #414141;
-  --boxshadow-color: #9a9773;
-  --text-color: #bebb9a;
-}
-
 /* Wrapper for nameing inputs container */
 .nameingContainer {
-  /* border: 1px solid white; */
   display: inline-block;
   flex: 1;
   border-radius: 5px;
@@ -24,7 +9,7 @@
 /* Player info form container */
 .playerInfo {
   display: flex;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--primary-30);
   padding: 10px 10px;
   margin-bottom: 4px;
   border-radius: 4px;
@@ -33,7 +18,7 @@
 /* get name from input of a player */
 .nameInput {
   font-family: monospace;
-  background-color: var(--input-color);
+  background-color: transparent;
   color: var(--text-color);
   border: 0px;
   flex: 1;
@@ -41,7 +26,7 @@
   font-size: 1.1rem;
   margin-right: 4px;
   padding: 3px 6px;
-  box-shadow: inset 0px -1.5px var(--boxshadow-color);
+  box-shadow: inset 0px -1.5px var(--primary-30);
 }
 
 .nameInput:focus-visible {
@@ -56,7 +41,7 @@
   border-radius: 4px;
   font-size: 1.1rem;
   margin-right: 4.4px;
-  padding: 3px 0px;
+  padding: 3px 6px;
   user-select: none;
 }
 
@@ -64,7 +49,7 @@
 .editButton {
   background-color: transparent;
   margin: 0px 3px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--secondary-20);
   border-radius: 2px;
   padding: 0px 10px;
   user-select: none;
@@ -92,20 +77,22 @@
   background-color: transparent;
   border-radius: 10px;
   margin: 0px 3px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--secondary-20);
   color: var(--text-color);
+  font-size: 12px;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
 .genderBtn.Active {
-  background-color: var(--text-color);
-  border: 1px solid var(--text-color);
+  background-color: var(--secondary-20);
+  border: 1px solid var(--secondary-20);
   color: var(--input-color);
 }
 
 .genderBtn:hover {
-  background-color: var(--text-color);
-  border: 1px solid var(--text-color);
+  background-color: var(--secondary-20);
+  border: 1px solid var(--secondary-20);
   color: var(--input-color);
 }
 
@@ -117,8 +104,16 @@
   font-size: 1.8rem;
   border-radius: 5px;
   padding: 2px 125px;
-  border: 1px solid white;
+  color: var(--text-color);
+  border: 1px solid var(--secondary-20);
+  background-color: transparent;
   user-select: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.LetGoBtn:hover {
+  background-color: var(--secondary-20);
 }
 
 .LetGoBtn > span {
