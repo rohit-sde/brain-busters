@@ -1,15 +1,13 @@
 [data-theme="Light"] {
   --font-weight: 600;
-  --Primary-color: rgb(239, 234, 183);
-  --Secondary-color: rgb(255 244 123);
-  --shadow-color: rgb(132, 129, 89);
+  --primary-30: #444125;
+  --secondary-20: #8d6e3b;
 }
 
 [data-theme="Dark"] {
   --font-weight: 500;
-  --Primary-color: rgb(243 237 176);
-  --Secondary-color: rgb(255 244 123);
-  --shadow-color: rgb(243 237 176);
+  --primary-30: #8a8a60;
+  --secondary-20: #d0a15d;
 }
 
 /* Home container rapper */
@@ -20,7 +18,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  box-shadow: 1px 1px 2px var(--shadow-color);
+  box-shadow: 1px 1px 2px var(--primary-30);
 }
 
 /* Title rapper for name "Brain Buster" */
@@ -61,6 +59,7 @@
   margin: 0.8rem;
   border-radius: 5px;
   align-items: center;
+  cursor: pointer;
   justify-content: center;
   font-size: 1.5rem;
   padding: 10px;
@@ -83,12 +82,14 @@
   flex: 0.5;
   margin: 6px 8px 8px 8px;
   border-radius: 6px;
-  background-color: var(--Primary-color);
+  border: 1px solid var(--primary-30);
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.2s;
 }
 
 .NextButtonactive:hover {
   position: relative;
-  transition: all 0.5s;
-  background-color: var(--Secondary-color);
+  background-color: var(--secondary-20);
   bottom: -1px;
 }
