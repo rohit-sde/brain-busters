@@ -1,0 +1,6 @@
+.GameBoard {
+  height: 100%;
+  width: 70%;
+  min-width: 650px;
+  max-width: 1150px;
+}

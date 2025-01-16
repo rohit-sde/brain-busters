@@ -2,7 +2,7 @@ import { createRef, Fragment, useEffect, useRef, useState } from "react";
 import { isNameOfGirl } from "../../funcs/checkfuncs.ts";
 import value from "../../Store/Store.ts";
 import "./InfoForm.css";
-import Loader from "../loader/loader.tsx";
+import Loader from "../smallcomponents/loader/loader.tsx";
 import { useDispatch } from "react-redux";
 import { SetPlayerDetails } from "../../Store/AboutGame.ts";
 import { useNavigate } from "react-router";

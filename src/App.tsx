@@ -2,8 +2,8 @@ import "./App.css";
 import Home from "./Pages/Home/Home.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import PlayerNames from "./Pages/PlayerNames/PlayerNames.tsx";
-import GameBoard from "./Pages/Maze/GameBoard.tsx";
-import Themer from "./Components/ThemeProvider/Themer.tsx";
+import GameBoard from "./Pages/GameBoard/GameBoard.tsx";
+import Themer from "./Components/smallcomponents/ThemeProvider/Themer.tsx";
 
 function App() {
   return (

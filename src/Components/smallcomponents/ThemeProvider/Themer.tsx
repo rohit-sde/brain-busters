@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { SetTheme } from "../../Store/AboutGame";
+
 import "./Themer.css";
+import { SetTheme } from "../../../Store/AboutGame";
 
 const Themer = () => {
   const [checked, setChecked] = useState(true);
