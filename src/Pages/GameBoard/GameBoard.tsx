@@ -6,6 +6,8 @@ import "./GameBoard.css";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import LiveRanking from "../../Components/LiveRanking/LiveRanking.tsx";
+import GridCards from "../../Components/GridCards/GridCards.tsx";
+import BoardSetter from "../../Components/BoardSetter/BoardSetter.tsx";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
@@ -30,7 +32,11 @@ const GameBoard = () => {
   return (
     <div className="GameBoard">
       <LeaderBoard />
-      <LiveRanking />
+      <div className="Lowerpart">
+        <LiveRanking />
+        <GridCards />
+        <BoardSetter />
+      </div>
     </div>
   );
 };

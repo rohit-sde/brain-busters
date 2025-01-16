@@ -63,7 +63,7 @@ const LiveRanking = () => {
               >
                 <img src={`${player.character}`} />
               </span>
-              {WindowSize > 800 && player.playerName}
+              {WindowSize > 860 && player.playerName}
             </div>
           );
         })}
