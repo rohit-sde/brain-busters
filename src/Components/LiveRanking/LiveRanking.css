@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  /* border: 1.5px solid var(--primary-30); */
+  border-radius: 9px;
+  width: 23%;
+  /* width: fit-content; */
+  /* min-width: 100px; */
+  height: fit-content;
+  min-height: 350px;
+  padding: 20px;
+}
+
+.ranker {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.playerCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* border: 0.1px solid var(--secondary-20); */
+  margin-bottom: 12px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px var(--secondary-20);
+  padding: 8px;
+  font-size: 20px;
+  user-select: none;
+  cursor: pointer;
+  animation: all 0.4s ease-in-out;
+}
+
+.playerCard:hover {
+  box-shadow: 0px 0px 8px var(--secondary-20);
+}
+
+.playerCard > span {
+  display: inline-block;
+  height: 38px;
+  /* height: 50%; */
+  width: 38px;
+  user-select: none;
+  position: relative;
+  box-shadow: 0px 0px 5px var(--primary-30);
+  /* border: 0.1px solid var(--primary-30); */
+  border-radius: 100%;
+}
+
+.num1::after {
+  position: absolute;
+  content: "🥇";
+  font-size: 21px;
+  top: 17.6px;
+  left: 5.5px;
+}
+.num2::after {
+  position: absolute;
+  content: "🥈";
+  font-size: 21px;
+  top: 16.5px;
+  left: 3.5px;
+}
+.num3::after {
+  position: absolute;
+  content: "🥉";
+  font-size: 21px;
+  top: 16.6px;
+  left: 3.5px;
+}
+.num4::after {
+  position: absolute;
+  content: "♕";
+  color: #d0a15d;
+  font-weight: 500;
+  font-size: 23px;
+  top: -15.4px;
+  left: 8px;
+}
+
+.playerCard > span > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
