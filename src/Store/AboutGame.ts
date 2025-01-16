@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // Types for the state
 interface AboutPlayersState {
   NoOfPlayers: number;
-  PlayersDetails: object[];
+  PlayersDetails: playerobject[];
   TimeLeft: { [key: string]: number };
   CurrentTurn: number;
 }
@@ -24,6 +24,16 @@ interface CardsDataState {
   Cards: object[]; // Adjust the type of Cards if needed
   IsFlipped: number[];
   IsSolved: number[];
+}
+
+interface playerobject {
+  Score: number;
+  character: string;
+  gender: string;
+  id: number;
+  isInput: boolean;
+  isLoading: boolean;
+  playerName: string;
 }
 
 // About_Players Slice
