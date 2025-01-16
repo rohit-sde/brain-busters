@@ -5,7 +5,7 @@ interface AboutPlayersState {
   NoOfPlayers: number;
   PlayersDetails: object[];
   TimeLeft: { [key: string]: number };
-  CurrentTurn: string;
+  CurrentTurn: number;
 }
 
 interface BoardSettingsState {
@@ -17,7 +17,6 @@ interface BoardSettingsState {
 }
 
 interface PlayersScoreState {
-  Score: { [key: string]: number };
   LeaderBoard: object[]; // Adjust the type of LeaderBoard if needed
 }
 
@@ -34,7 +33,7 @@ const About_Players = createSlice({
     NoOfPlayers: 0,
     PlayersDetails: [],
     TimeLeft: {},
-    CurrentTurn: "",
+    CurrentTurn: 1,
   } as AboutPlayersState,
   reducers: {
     SetPlayerNum(state, action) {
@@ -43,13 +42,25 @@ const About_Players = createSlice({
         .fill(null)
         .map((_, i) => {
           state.PlayersDetails.push({
+            id: i + 1,
             playerName: `Player ${i + 1}`,
             character: "",
             gender: "M",
+            Score: 0,
             isInput: false,
             isLoading: true,
           });
         });
+    },
+    SetScore(state, action) {
+      const playerId = action.payload;
+      // console.log(state.PlayersDetails[playerId]?.Score, "Updated Score...");
+      state.PlayersDetails = state.PlayersDetails.map((ply) => {
+        if (ply.id === playerId) {
+          return { ...ply, Score: ply.Score + 1 };
+        }
+        return ply;
+      });
     },
     SetPlayerDetails(state, action) {
       state.PlayersDetails = action.payload;
@@ -101,18 +112,9 @@ const Board_Settings = createSlice({
 const Players_Score = createSlice({
   name: "Players_Score",
   initialState: {
-    Score: {},
     LeaderBoard: [],
   } as PlayersScoreState,
   reducers: {
-    SetScore(state, action) {
-      const player = action.payload;
-      if (state.Score[player]) {
-        state.Score[player] += 1;
-      } else {
-        state.Score[player] = 1;
-      }
-    },
     SetLeaderBoard(state, action) {
       state.LeaderBoard.push(action.payload);
     },
@@ -128,6 +130,9 @@ const Cards_Data = createSlice({
     IsSolved: [],
   } as CardsDataState,
   reducers: {
+    SetCards(state, action) {
+      state.Cards.push(action.payload);
+    },
     SetIsFlipped(state, action) {
       state.IsFlipped.push(action.payload);
     },
@@ -154,6 +159,7 @@ export const {
   SetPlayerDetails,
   updatePlayerDetails,
   SetLeftTime,
+  SetScore,
   SetCurrentTurn,
 } = About_Players.actions;
 export const {
@@ -163,7 +169,7 @@ export const {
   SetTimeForEachPlayer,
   SetTypeOfCards,
 } = Board_Settings.actions;
-export const { SetLeaderBoard, SetScore } = Players_Score.actions;
+export const { SetLeaderBoard } = Players_Score.actions;
 export const { SetIsFlipped, SetIsSolved } = Cards_Data.actions;
 export const { SetTheme } = App_Theme.actions;
 
