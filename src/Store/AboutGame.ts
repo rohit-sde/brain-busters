@@ -9,8 +9,10 @@ interface AboutPlayersState {
 }
 
 interface BoardSettingsState {
-  TypeOfCards: string; // Assuming 'TypeOfCards' is a string, update if necessary
-  GridSize: number;
+  Cards: {
+    TypeOfCards: string; // Assuming 'TypeOfCards' is a string, update if necessary
+    GridSize: number;
+  };
   TimeForEachPlayer: number;
   IsPlayStart: boolean;
   isResetGame: boolean;
@@ -93,18 +95,17 @@ const About_Players = createSlice({
 const Board_Settings = createSlice({
   name: "Board_Settings",
   initialState: {
-    TypeOfCards: "Alphabet", // Assuming default is "Alphabet" string
-    GridSize: 4,
+    Cards: {
+      TypeOfCards: "Alphabet",
+      GridSize: 4,
+    },
     TimeForEachPlayer: 5,
     IsPlayStart: false,
     isResetGame: false,
   } as BoardSettingsState,
   reducers: {
-    SetTypeOfCards(state, action) {
-      state.TypeOfCards = action.payload;
-    },
-    SetGridSize(state, action) {
-      state.GridSize = action.payload;
+    SetCards(state, action) {
+      state.Cards = action.payload;
     },
     SetTimeForEachPlayer(state, action) {
       state.TimeForEachPlayer = action.payload;
@@ -173,11 +174,10 @@ export const {
   SetCurrentTurn,
 } = About_Players.actions;
 export const {
-  SetGridSize,
   SetIsPlayStart,
   SetIsResetGame,
   SetTimeForEachPlayer,
-  SetTypeOfCards,
+  SetCards,
 } = Board_Settings.actions;
 export const { SetLeaderBoard } = Players_Score.actions;
 export const { SetIsFlipped, SetIsSolved } = Cards_Data.actions;
