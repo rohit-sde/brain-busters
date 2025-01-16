@@ -1,0 +1,13 @@
+.timer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  /* width: 100%; */
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.timer > span {
+  font-size: calc(3vw + 0.8rem);
+}
