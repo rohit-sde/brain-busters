@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import value from "../../Store/Store.ts";
 import "./LeaderBoard.css";
 interface playerobject {
@@ -17,10 +17,8 @@ const PlayerDetails = () => {
   // console.log(playerDetails);
   useEffect(() => {
     const unsubscribe = value.subscribe(() => {
-      // const playerDetails = useSelector((state) => state.products.playerDetails);
       const updatedScore = value.getState().About.PlayersDetails;
       const current = value.getState().About.CurrentTurn;
-      // console.log(updatedScore);
       setCurrentTurn(current);
       setPlayerDetails([...updatedScore]);
     });
@@ -30,30 +28,25 @@ const PlayerDetails = () => {
       unsubscribe();
     };
   }, []);
-
-  // For debugging purposes, let's log the playerDetails
-  // console.log("-------------------");
-  playerDetails.forEach((player, i) => {
-    // console.log(`Player ${i}:`, player.Score);
-  });
   function handleTurn(id: number) {
     if (currentTurn == id) {
-      return "current";
+      return "currentTurn";
     }
+    return "";
   }
   return (
     <div className="LeaderBoard">
-      {playerDetails?.map((player: object, i: number) => {
-        const isthisturn = handleTurn(i);
+      {playerDetails?.map((player: playerobject, i: number) => {
+        const isthisturn = handleTurn(i + 1);
         return (
-          <>
-            <div className={isthisturn} key={i}>
+          <Fragment key={i}>
+            <div className={isthisturn}>
               <span>{player.playerName}</span>
               {player.Score < Number(10) && Number(0)}
               {player.Score}
             </div>
             {!(playerDetails.length == i + 1) && <span className="line"></span>}
-          </>
+          </Fragment>
         );
       })}
     </div>

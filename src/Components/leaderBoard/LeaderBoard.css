@@ -22,13 +22,16 @@
   position: relative;
 }
 .currentTurn::after {
-  content: "";
-  border: 1.5px solid white;
+  content: "∘₊✧──────✧₊∘";
   border-radius: 10px;
-  width: 10%;
+  font-size: 21px;
+  white-space: nowrap;
+  width: 100%;
+  color: var(--primary-30);
   position: absolute;
-  bottom: 0;
-  left: 165px;
+  right: 24px;
+  font-weight: 600;
+  bottom: -19px;
 }
 
 .LeaderBoard > div > span {
@@ -40,10 +43,10 @@
 }
 
 .line {
-  border: 0.2px solid var(--primary-30);
+  /* border: 0.2px solid var(--primary-30); */
   height: 70%;
   min-height: 40px;
-  box-shadow: 0px 0px 4px var(--primary-30);
+  box-shadow: 0px 0px 2px 1px var(--primary-30);
   border-radius: 1px;
 }
 
