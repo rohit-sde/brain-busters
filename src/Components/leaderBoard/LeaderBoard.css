@@ -1,0 +1,59 @@
+.LeaderBoard {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 20px;
+  border-radius: 10px;
+}
+
+.LeaderBoard > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  font-size: calc(2.2vw + 0.8rem);
+  margin: 0px 55px;
+  /* background-color: #c8f859; */
+}
+
+.currentTurn {
+  position: relative;
+}
+.currentTurn::after {
+  content: "";
+  border: 1.5px solid white;
+  border-radius: 10px;
+  width: 10%;
+  position: absolute;
+  bottom: 0;
+  left: 165px;
+}
+
+.LeaderBoard > div > span {
+  font-size: calc(1.8vw + 0.4rem);
+  margin-bottom: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.line {
+  border: 0.2px solid var(--primary-30);
+  height: 70%;
+  min-height: 40px;
+  box-shadow: 0px 0px 4px var(--primary-30);
+  border-radius: 1px;
+}
+
+/* .currentTurn {
+  content: "";
+  position: absolute;
+  right: -60%;
+  top: 25%;
+  height: 45px;
+  width: 0.1px;
+  border: 1px solid var(--primary-30);
+  background-color: var(--primary-30);
+} */
