@@ -1,0 +1,11 @@
+.CardsGrid {
+  display: grid;
+  /* align-items: center;  */
+  /* justify-content: center; */
+  aspect-ratio: 1/1;
+  border: 1px solid white;
+  flex: 0.95;
+  margin: 0px 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
