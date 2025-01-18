@@ -5,10 +5,21 @@ import { useDispatch } from "react-redux";
 import { SetScore } from "../../Store/AboutGame";
 import Timer from "../smallcomponents/Timer/Timer";
 
+interface playersDetails {
+  id: number;
+  playerName: string;
+  character: string;
+  gender: string;
+  Score: number;
+  isInput: boolean;
+  isLoading: boolean;
+}
+
 const LiveRanking = () => {
-  const [playersDetail, setPlayersDetail] = useState<object[]>([]);
+  const [playersDetail, setPlayersDetail] = useState<playersDetails[]>([]);
   const [WindowSize, setWindowSize] = useState(window.innerWidth);
   const dispatch = useDispatch();
+  const emojiArray = ["😊", "😍", "😎", "🥺", "😂", "🤔", "🙌", "💥", "🌟"];
   // console.log(WindowSize);
 
   useEffect(() => {
@@ -30,7 +41,7 @@ const LiveRanking = () => {
 
   // console.log(playersDetail, "playersDetail");
   const sortedPlayers = [...playersDetail].sort((a, b) => b.Score - a.Score);
-  function getRank(position) {
+  function getRank(position: number) {
     if (position == 1) return "st";
     if (position == 2) return "nd";
     if (position == 3) return "rd";
@@ -61,7 +72,11 @@ const LiveRanking = () => {
                 className={`num${sortedPlayers.length == 1 ? "" : position}`}
                 onClick={() => dispatch(SetScore(player.id))}
               >
-                <img src={`${player.character}`} />
+                {emojiArray.includes(player.character) ? (
+                  <span>{player.character}</span>
+                ) : (
+                  <img src={`${player.character}`} />
+                )}
               </span>
               {WindowSize > 860 && player.playerName}
             </div>
