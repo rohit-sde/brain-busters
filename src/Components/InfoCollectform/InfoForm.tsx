@@ -98,11 +98,6 @@ const InfoForm = () => {
   function handleNextPage() {
     dispatch(SetPlayerDetails(playersinfo));
     navigate("/PlayerNameing/GameBoard");
-    console.log(
-      "hi our data is successfully updated...",
-      playersinfo,
-      "😁😊😁😊😊😊😊😁😁😁"
-    );
   }
 
   async function setImageFromUrl(Url: string, i: number) {
@@ -138,6 +133,16 @@ const InfoForm = () => {
         });
       });
     } catch (error) {
+      const emojis = ["😊", "😍", "😎", "🥺", "😂", "🤔", "🙌", "💥", "🌟"];
+      console.log("hello from i am infoForm", emojis);
+      setPlayersinfo((prev) => {
+        return prev.map((player, k) => {
+          if (i === k) {
+            return { ...player, character: emojis[Math.random() * 10] };
+          }
+          return player;
+        });
+      });
       console.error("Error downloading image:", error);
     }
     setPlayersinfo((prev) => {
