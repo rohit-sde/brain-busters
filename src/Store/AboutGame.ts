@@ -97,7 +97,7 @@ const Board_Settings = createSlice({
   initialState: {
     Cards: {
       TypeOfCards: "ABC",
-      GridSize: 12,
+      GridSize: 8,
     },
     TimeForEachPlayer: 5,
     IsPlayStart: false,
