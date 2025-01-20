@@ -18,7 +18,6 @@ interface playersDetails {
 const LiveRanking = () => {
   const [playersDetail, setPlayersDetail] = useState<playersDetails[]>([]);
   const [WindowSize, setWindowSize] = useState(window.innerWidth);
-  const dispatch = useDispatch();
   const emojiArray = ["😊", "😍", "😎", "🥺", "😂", "🤔", "🙌", "💥", "🌟"];
   // console.log(WindowSize);
 
@@ -70,7 +69,6 @@ const LiveRanking = () => {
                   : `${position}${getRank(position)}`)}
               <span
                 className={`num${sortedPlayers.length == 1 ? "" : position}`}
-                onClick={() => dispatch(SetScore(player.id))}
               >
                 {emojiArray.includes(player.character) ? (
                   <span>{player.character}</span>

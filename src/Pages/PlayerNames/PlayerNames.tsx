@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 const PlayerNames = () => {
-  console.log(value.getState().About.NoOfPlayers);
-  console.log(value.getState().Theme);
+  // console.log(value.getState().About.NoOfPlayers);
+  // console.log(value.getState().Theme);
   const NoOfPlayer = value.getState().About.NoOfPlayers;
   const navigate = useNavigate();
   useEffect(() => {

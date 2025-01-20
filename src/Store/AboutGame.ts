@@ -69,7 +69,7 @@ const About_Players = createSlice({
       // console.log(state.PlayersDetails[playerId]?.Score, "Updated Score...");
       state.PlayersDetails = state.PlayersDetails.map((ply) => {
         if (ply.id === playerId) {
-          return { ...ply, Score: ply.Score + 1 };
+          return { ...ply, Score: ply.Score + 2 };
         }
         return ply;
       });
@@ -85,8 +85,12 @@ const About_Players = createSlice({
       const { Player, Time } = action.payload;
       state.TimeLeft[Player] = Time;
     },
-    SetCurrentTurn(state, action) {
-      state.CurrentTurn = action.payload;
+    SetCurrentTurn(state) {
+      if (state.NoOfPlayers === state.CurrentTurn) {
+        state.CurrentTurn = 1;
+        return;
+      }
+      state.CurrentTurn = state.CurrentTurn + 1;
     },
   },
 });

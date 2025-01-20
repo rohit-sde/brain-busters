@@ -14,7 +14,7 @@ const GameBoard = () => {
   const navigate = useNavigate();
   const playersDetail = value.getState().About.PlayersDetails;
   const leaderBoard = value.getState().products.LeaderBoard;
-  console.log(playersDetail);
+  // console.log(playersDetail);
   useEffect(() => {
     if (playersDetail.length === 0) {
       navigate("/");
