@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import value from "../../Store/Store";
+import { useCallback, useEffect, useState } from "react";
 import "./GridCards.css";
 import handleCardsDetails from "../../funcs/CardsGenerator";
 import { SetCurrentTurn, SetScore } from "../../Store/AboutGame";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 interface grid {
   TypeOfCards: string;
@@ -11,20 +10,20 @@ interface grid {
 }
 
 const GridCards = () => {
-  const [grid, setgrid] = useState<grid>(value.getState().Board.Cards);
+  const updatedCardSetting = useSelector((state) => state.Board.Cards);
+  const currentPlayer = useSelector((state) => state.About.CurrentTurn);
+  const [grid, setgrid] = useState<grid>(updatedCardSetting);
   const [isFlipped, setFlipped] = useState<number[]>([]);
   const [isMatched, setIsMatched] = useState<number[]>([]);
   const [cardsArray, setCardsArray] = useState<{ id: number; value: string }[]>(
     []
   );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const unsubscribe = value.subscribe(() => {
-      const updatedGrid = value.getState().Board.Cards;
-      setgrid({ ...updatedGrid });
-    });
-    setgrid({ ...value.getState().Board.Cards });
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (updatedCardSetting !== grid) setgrid(updatedCardSetting);
+    setIsMatched([]);
     setCardsArray(() => {
       const cards: { id: number; value: string }[] = handleCardsDetails(
         grid?.TypeOfCards,
@@ -32,10 +31,7 @@ const GridCards = () => {
       );
       return cards;
     });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+  }, [updatedCardSetting, grid]);
   function checkisFlipped(id: number) {
     return isFlipped.includes(id);
   }
@@ -48,33 +44,38 @@ const GridCards = () => {
     if (cardsArray[index].value === cardsArray[index2].value) return true;
     return false;
   }
-  function handleFlippedCards(id: number) {
-    if (isFlipped.length == 0 && !isMatched.includes(id)) {
-      setFlipped([id]);
-    }
-    if (isFlipped.length == 1 && !isMatched.includes(id)) {
-      // console.log(id);
-      if (cardMatched(id)) {
-        const id2 = isFlipped[0];
-        const currentPlayer = value.getState().About.CurrentTurn;
-        setIsMatched((prev) => [...prev, id, id2]);
-        dispatch(SetScore(currentPlayer));
+  const handleFlippedCards = useCallback(
+    function handleFlippedCard(id: number) {
+      if (isFlipped.length == 0 && !isMatched.includes(id)) {
+        setFlipped([id]);
       }
-      setFlipped((prev) => [...prev, id]);
-      setTimeout(() => {
-        setFlipped([]);
-        dispatch(SetCurrentTurn());
-      }, 400);
-    }
+      if (isFlipped.length == 1 && !isMatched.includes(id)) {
+        // console.log(id);
+        if (cardMatched(id)) {
+          const id2 = isFlipped[0];
+          setIsMatched((prev) => [...prev, id, id2]);
+          dispatch(SetScore(currentPlayer));
+        }
+        setFlipped((prev) => [...prev, id]);
+        setTimeout(() => {
+          setFlipped([]);
+          dispatch(SetCurrentTurn());
+        }, 400);
+      }
+    },
+    [isFlipped]
+  );
+  function gridTemplateCol() {
+    return `repeat(${grid?.GridSize / 2},minmax(0,1fr))`;
   }
   return (
     <div
       className="CardsGrid"
       style={{
-        gridTemplateColumns: `repeat(${grid.GridSize / 2},minmax(0,1fr))`,
+        gridTemplateColumns: `${gridTemplateCol}`,
       }}
     >
-      {cardsArray.map((val) => {
+      {cardsArray?.map((val) => {
         const id = val.id;
         return (
           <span
@@ -86,7 +87,10 @@ const GridCards = () => {
                 ? "macthed"
                 : ""
             }`}
-            onClick={() => handleFlippedCards(id)}
+            onClick={() => {
+              if (isFlipped[0] !== id || !isMatched.find(id))
+                handleFlippedCards(id);
+            }}
           >
             {checkisFlipped(id) || checkisMacthed(id) ? val.value : "?"}
           </span>
