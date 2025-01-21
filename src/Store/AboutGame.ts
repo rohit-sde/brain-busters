@@ -109,7 +109,11 @@ const Board_Settings = createSlice({
   } as BoardSettingsState,
   reducers: {
     SetCards(state, action) {
-      state.Cards = action.payload;
+      if (typeof action.payload == "number") {
+        state.Cards.GridSize = action.payload;
+        return;
+      }
+      state.Cards.TypeOfCards = action.payload;
     },
     SetTimeForEachPlayer(state, action) {
       state.TimeForEachPlayer = action.payload;
