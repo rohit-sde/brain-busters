@@ -1,5 +1,9 @@
 .boardSetter {
   border: 1px solid white;
   width: 20%;
-  height: fit-content;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
