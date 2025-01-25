@@ -84,6 +84,49 @@ const EMOJIS: { id: number; value: string }[] = [
   { id: 53, value: "🌸" },
 ];
 
+const SHAPES: { id: number; value: string }[] = [
+  { id: 0, value: "◯" },
+  { id: 1, value: "◼" },
+  { id: 2, value: "△" },
+  { id: 3, value: "★" },
+  { id: 4, value: "☆" },
+  { id: 5, value: "□" },
+  { id: 6, value: "◇" },
+  { id: 7, value: "▭" },
+  { id: 8, value: "▯" },
+  { id: 9, value: "◯" },
+  { id: 10, value: "▮" },
+  { id: 11, value: "◠" },
+  { id: 12, value: "⊙" },
+  { id: 13, value: "⊛" },
+  { id: 14, value: "⊜" },
+  { id: 15, value: "⧫" },
+  { id: 16, value: "⧴" },
+  { id: 17, value: "➖" },
+  { id: 18, value: "➗" },
+  { id: 19, value: "⟁" },
+  { id: 20, value: "▸" },
+  { id: 21, value: "◁" },
+  { id: 22, value: "⚪" },
+  { id: 23, value: "⚫" },
+  { id: 24, value: "✧" },
+  { id: 25, value: "✩" },
+  { id: 26, value: "⋆" },
+  { id: 27, value: "⧫" },
+  { id: 28, value: "▤" },
+  { id: 29, value: "⟁" },
+  { id: 30, value: "≡" },
+  { id: 31, value: "⩰" },
+  { id: 32, value: "⩷" },
+  { id: 33, value: "◯" },
+  { id: 34, value: "⨀" },
+  { id: 35, value: "⊙" },
+  { id: 36, value: "◯" },
+  { id: 37, value: "◇" },
+  { id: 38, value: "■" },
+  { id: 39, value: "➰" },
+];
+
 export default function handleCardsDetails(topic: string, GridSize: number) {
   if (topic == "ABC") {
     const slicedArray = ABC.slice(0, GridSize);
@@ -104,24 +147,20 @@ export default function handleCardsDetails(topic: string, GridSize: number) {
     for (let i = 0; i < GridSize; i++) {
       NUMSArray.push(Math.floor(Math.random() * 100));
     }
-    const sortedNUM = NUMSArray.concat(NUMSArray).sort(() => {
+    const concatedNum = NUMSArray.concat(NUMSArray);
+    const updatedNum = concatedNum.map((ele, i) => ({ value: ele, id: i }));
+    const sortedNum = updatedNum.sort(() => {
       return Math.random() - 0.5;
     });
-    return [...sortedNUM];
-  } else {
-    const ColorsArray = Array(GridSize).map(() => {
-      const r = Math.floor(Math.random() * 51); // Darker red range
-      const g = Math.floor(Math.random() * 51); // Darker green range
-      const b = Math.floor(Math.random() * 51); // Darker blue range
-
-      // Convert the RGB values to a hexadecimal color string
-      return `#${r.toString(16).padStart(2, "0")}${g
-        .toString(16)
-        .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-    });
-    const sortedColors = ColorsArray.concat(ColorsArray).sort(() => {
+    console.log(sortedNum);
+    return [...sortedNum];
+  } else if (topic == "SHAPES") {
+    const slicedArray = SHAPES.slice(0, GridSize);
+    const concatedSHAPES = slicedArray.concat(slicedArray);
+    const updatedSHAPES = concatedSHAPES.map((ele, i) => ({ ...ele, id: i }));
+    const sortedSHAPES = updatedSHAPES.sort(() => {
       return Math.random() - 0.5;
     });
-    return [...sortedColors];
+    return [...sortedSHAPES];
   }
 }

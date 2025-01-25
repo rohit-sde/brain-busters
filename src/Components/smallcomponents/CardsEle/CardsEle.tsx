@@ -39,15 +39,17 @@ const CardsEle = () => {
       </span>
       <span>
         <button
-          className={`${checkTypeOfCards("123") && "currentType"}`}
-          onClick={() => dispatch(SetCards("123"))}
+          className={`${checkTypeOfCards("NUM") && "currentType"}`}
+          onClick={() => dispatch(SetCards("NUM"))}
         >
           123
         </button>
         <button
-          className={`colors ${checkTypeOfCards("COLORS") && "currentType"}`}
-          onClick={() => dispatch(SetCards("COLORS"))}
-        ></button>
+          className={`${checkTypeOfCards("SHAPES") && "currentType"}`}
+          onClick={() => dispatch(SetCards("SHAPES"))}
+        >
+          ◯◼△
+        </button>
       </span>
     </div>
   );
