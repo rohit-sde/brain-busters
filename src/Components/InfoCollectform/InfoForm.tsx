@@ -134,7 +134,7 @@ const InfoForm = () => {
       });
     } catch (error) {
       const emojis = ["😊", "😍", "😎", "🥺", "😂", "🤔", "🙌", "💥", "🌟"];
-      console.log("hello from i am infoForm", emojis);
+      // console.log("hello from i am infoForm", emojis);
       setPlayersinfo((prev) => {
         return prev.map((player, k) => {
           if (i === k) {

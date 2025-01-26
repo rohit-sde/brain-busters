@@ -128,14 +128,15 @@ const SHAPES: { id: number; value: string }[] = [
 ];
 
 export default function handleCardsDetails(topic: string, GridSize: number) {
+  const newnum = (GridSize * GridSize) / 2;
   if (topic == "ABC") {
-    const slicedArray = ABC.slice(0, GridSize);
+    const slicedArray = ABC.slice(0, newnum);
     const concatedABC = slicedArray.concat(slicedArray);
     const updatedABC = concatedABC.map((ele, i) => ({ ...ele, id: i }));
     const sortedABC = updatedABC.sort(() => Math.random() - 0.5);
     return sortedABC;
   } else if (topic == "EMOJIS") {
-    const slicedArray = EMOJIS.slice(0, GridSize);
+    const slicedArray = EMOJIS.slice(0, newnum);
     const concatedEMOJIS = slicedArray.concat(slicedArray);
     const updatedEMOJIS = concatedEMOJIS.map((ele, i) => ({ ...ele, id: i }));
     const sortedEMOJIS = updatedEMOJIS.sort(() => {
@@ -144,7 +145,7 @@ export default function handleCardsDetails(topic: string, GridSize: number) {
     return [...sortedEMOJIS];
   } else if (topic == "NUM") {
     const NUMSArray = [];
-    for (let i = 0; i < GridSize; i++) {
+    for (let i = 0; i < newnum; i++) {
       NUMSArray.push(Math.floor(Math.random() * 100));
     }
     const concatedNum = NUMSArray.concat(NUMSArray);
@@ -152,10 +153,10 @@ export default function handleCardsDetails(topic: string, GridSize: number) {
     const sortedNum = updatedNum.sort(() => {
       return Math.random() - 0.5;
     });
-    console.log(sortedNum);
+    // console.log(sortedNum);
     return [...sortedNum];
   } else if (topic == "SHAPES") {
-    const slicedArray = SHAPES.slice(0, GridSize);
+    const slicedArray = SHAPES.slice(0, newnum);
     const concatedSHAPES = slicedArray.concat(slicedArray);
     const updatedSHAPES = concatedSHAPES.map((ele, i) => ({ ...ele, id: i }));
     const sortedSHAPES = updatedSHAPES.sort(() => {

@@ -1,5 +1,26 @@
 .InputSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border: 1px solid blue;
   height: 30%;
   width: 100%;
+}
+
+.GridSize {
+  width: 100%;
+}
+
+.SetTime {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid orchid;
+  /* background-color: aquamarine; */
+}
+
+input {
+  background-color: #494646;
+  border-radius: 2px;
+  border: none;
+  border-bottom: 0.8px solid var(--primary-30);
 }

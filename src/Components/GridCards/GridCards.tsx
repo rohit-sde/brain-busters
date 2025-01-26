@@ -23,12 +23,10 @@ const GridCards = () => {
 
   useEffect(() => {
     if (updatedCardSetting !== grid) {
-      console.log("if statement");
       setgrid(updatedCardSetting);
     }
     setIsMatched([]);
     setFlipped([]);
-    console.log("isFlipped", isFlipped);
     setCardsArray(() => {
       const cards: { id: number; value: string }[] = handleCardsDetails(
         grid?.TypeOfCards,
@@ -74,7 +72,8 @@ const GridCards = () => {
     <div
       className="CardsGrid"
       style={{
-        gridTemplateColumns: `repeat(${grid?.GridSize / 2},minmax(0,1fr))`,
+        gridTemplateColumns: `repeat(${grid?.GridSize},minmax(0,1fr))`,
+        gridTemplateRows: `repeat(${grid?.GridSize},minmax(0,1fr))`,
       }}
     >
       {cardsArray?.map((val) => {

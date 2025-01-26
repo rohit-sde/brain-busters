@@ -4,7 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 interface AboutPlayersState {
   NoOfPlayers: number;
   PlayersDetails: playerobject[];
-  TimeLeft: { [key: string]: number };
   CurrentTurn: number;
 }
 
@@ -13,7 +12,6 @@ interface BoardSettingsState {
     TypeOfCards: string; // Assuming 'TypeOfCards' is a string, update if necessary
     GridSize: number;
   };
-  TimeForEachPlayer: number;
   IsPlayStart: boolean;
   isResetGame: boolean;
 }
@@ -33,6 +31,7 @@ interface playerobject {
   character: string;
   gender: string;
   id: number;
+  time: { min: number; sec: number };
   isInput: boolean;
   isLoading: boolean;
   playerName: string;
@@ -44,7 +43,6 @@ const About_Players = createSlice({
   initialState: {
     NoOfPlayers: 0,
     PlayersDetails: [],
-    TimeLeft: {},
     CurrentTurn: 1,
   } as AboutPlayersState,
   reducers: {
@@ -59,6 +57,7 @@ const About_Players = createSlice({
             character: "",
             gender: "M",
             Score: 0,
+            time: { min: 5, sec: 30 },
             isInput: false,
             isLoading: true,
           });
@@ -66,7 +65,6 @@ const About_Players = createSlice({
     },
     SetScore(state, action) {
       const playerId = action.payload;
-      // console.log(state.PlayersDetails[playerId]?.Score, "Updated Score...");
       state.PlayersDetails = state.PlayersDetails.map((ply) => {
         if (ply.id === playerId) {
           return { ...ply, Score: ply.Score + 2 };
@@ -101,9 +99,8 @@ const Board_Settings = createSlice({
   initialState: {
     Cards: {
       TypeOfCards: "ABC",
-      GridSize: 8,
+      GridSize: 4,
     },
-    TimeForEachPlayer: 5,
     IsPlayStart: false,
     isResetGame: false,
   } as BoardSettingsState,
@@ -114,9 +111,6 @@ const Board_Settings = createSlice({
         return;
       }
       state.Cards.TypeOfCards = action.payload;
-    },
-    SetTimeForEachPlayer(state, action) {
-      state.TimeForEachPlayer = action.payload;
     },
     SetIsPlayStart(state) {
       state.IsPlayStart = !state.IsPlayStart;
@@ -181,12 +175,8 @@ export const {
   SetScore,
   SetCurrentTurn,
 } = About_Players.actions;
-export const {
-  SetIsPlayStart,
-  SetIsResetGame,
-  SetTimeForEachPlayer,
-  SetCards,
-} = Board_Settings.actions;
+export const { SetIsPlayStart, SetIsResetGame, SetCards } =
+  Board_Settings.actions;
 export const { SetLeaderBoard } = Players_Score.actions;
 export const { SetIsFlipped, SetIsSolved } = Cards_Data.actions;
 export const { SetTheme } = App_Theme.actions;

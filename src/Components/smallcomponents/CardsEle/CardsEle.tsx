@@ -10,7 +10,7 @@ const CardsEle = () => {
   useEffect(() => {
     const unsubscribe = value.subscribe(() => {
       const cardsType = value.getState().Board.Cards.TypeOfCards;
-      console.log(cardsType, "CardsEle");
+      // console.log(cardsType, "CardsEle");
       setCardsType(cardsType);
     });
 
