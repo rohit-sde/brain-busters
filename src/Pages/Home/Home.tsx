@@ -1,18 +1,25 @@
 // Style
-import { useEffect, useState } from "react";
 import "./Home.css";
 
-import { SetPlayerNum } from "../../Store/AboutGame.ts";
-import value from "../../Store/Store.ts";
+// Hooks
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+
+// Reducer
+import { SetPlayerNum } from "../../Store/AboutGame.ts";
+
+// Components
+import NumOfPlayers from "./components/buttons/NumOfPlayers.tsx";
+import NextButton from "../../Components/smallcomponents/NextButton/NextButton.tsx";
 
 const Home = () => {
   const [playerCount, SetPlayerCount] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const NoOfPlayers = useSelector((v) => v.About.NoOfPlayers);
 
-  const isOk = value.getState().About.NoOfPlayers === 0;
+  const isOk = NoOfPlayers === 0;
 
   useEffect(() => {
     if (!isOk) {
@@ -25,48 +32,30 @@ const Home = () => {
     navigate("/PlayerNameing");
   }
 
+  function handlestate(val: number) {
+    SetPlayerCount(val);
+  }
   return (
     <div className="HomeContainer">
       <span className="Title">Brain Buster</span>
       <div className="MultiPlayerSec">
-        <span>
-          {Array(2)
-            .fill(null)
-            .map((_, i) => (
-              <button
-                className={`NoOfPlayers${
-                  playerCount === i + 1 ? "active" : ""
-                }`}
-                onClick={() => SetPlayerCount(i + 1)}
-                key={i}
-              >
-                {i === 0 ? "1 Player" : "2 Players"}
-              </button>
-            ))}
-        </span>
-        <span>
-          {Array(2)
-            .fill(null)
-            .map((_, i) => (
-              <button
-                className={`NoOfPlayers${
-                  playerCount === i + 3 ? "active" : ""
-                }`}
-                onClick={() => SetPlayerCount(i + 3)}
-                key={i}
-              >
-                {i + 3} Players
-              </button>
-            ))}
-        </span>
+        {Array(4)
+          .fill(null)
+          .map((_, i) => (
+            <NumOfPlayers
+              key={i}
+              value={i + 1}
+              isInput={i + 1 == 4}
+              playerCount={playerCount}
+              clickhandler={handlestate}
+            />
+          ))}
       </div>
-      <button
-        className={`NextButton${playerCount !== 0 ? "active" : ""}`}
-        onClick={NextButtonHandler}
-        disabled={playerCount === 0}
-      >
-        Next
-      </button>
+      <NextButton
+        value={"Next"}
+        buttonHandler={NextButtonHandler}
+        playerCount={playerCount}
+      />
     </div>
   );
 };
