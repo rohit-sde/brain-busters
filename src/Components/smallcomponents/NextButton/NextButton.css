@@ -1,0 +1,20 @@
+.NextButton,
+.NextButtonactive {
+  font-family: "Atma", system-ui;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 2rem;
+  flex: 0.5;
+  margin: 6px 8px 8px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--primary-30);
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.2s;
+}
+
+.NextButtonactive:hover {
+  position: relative;
+  background-color: var(--secondary-20);
+  bottom: -1px;
+}
