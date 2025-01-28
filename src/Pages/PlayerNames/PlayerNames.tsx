@@ -1,14 +1,12 @@
 import "./PlayerNames.css";
-import value from "../../Store/Store.ts";
-import InfoForm from "../../Components/InfoCollectform/InfoForm.tsx";
+import InfoForm from "./components/InfoCollectform/InfoCollectForm.tsx";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const PlayerNames = () => {
-  // console.log(value.getState().About.NoOfPlayers);
-  // console.log(value.getState().Theme);
-  const NoOfPlayer = value.getState().About.NoOfPlayers;
   const navigate = useNavigate();
+  const NoOfPlayer = useSelector((v) => v.About.NoOfPlayers);
   useEffect(() => {
     if (NoOfPlayer === 0) {
       navigate(-1);

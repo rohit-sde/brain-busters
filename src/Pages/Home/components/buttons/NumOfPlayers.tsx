@@ -23,8 +23,8 @@ const NumOfPlayers = ({
     const currentValue = val?.target?.value;
     if (currentValue >= 4 && currentValue <= 8) {
       setInputvalue(Number(currentValue));
-      console.log("val.target.value", currentValue);
-      console.log("inputvalue", inputvalue);
+      // console.log("val.target.value", currentValue);
+      // console.log("inputvalue", inputvalue);
       return;
     }
     setInputvalue((prev) => prev);
