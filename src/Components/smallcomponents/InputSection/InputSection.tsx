@@ -42,6 +42,7 @@ const InputSection = () => {
       <span className="GridSize">
         <label htmlFor="GridSize">Grid Size :- </label>
         <input
+          className="minSecGridInput"
           type="number"
           name="GridSize"
           value={GridNum}
@@ -54,6 +55,7 @@ const InputSection = () => {
         <span>
           <label htmlFor="minutes">Min :-</label>
           <input
+            className="minSecGridInput"
             type="number"
             defaultValue={time[0]?.min}
             onChange={(e) => handleInputs(e, "min")}
@@ -64,6 +66,7 @@ const InputSection = () => {
         <span>
           <label htmlFor="seconds">Sec :-</label>
           <input
+            className="minSecGridInput"
             type="number"
             defaultValue={time[0]?.sec}
             onChange={(e) => handleInputs(e, "sec")}
