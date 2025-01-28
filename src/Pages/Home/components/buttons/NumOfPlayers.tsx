@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./NumOfPlayers.css";
 
 interface arguments {
@@ -11,17 +11,20 @@ interface arguments {
 const NumOfPlayers = ({
   value,
   isInput = false,
-  playerCount,
+  playerCount = 0,
   clickhandler,
 }: arguments) => {
   const [inputvalue, setInputvalue] = useState(4);
   // console.log(playerCount);
+  useEffect(() => {
+    clickhandler?.(inputvalue);
+  }, [inputvalue]);
   function handleInput(val: object) {
-    if (val.target.value >= 4 && val.target.value <= 8) {
-      setInputvalue(val.target.value);
-      console.log("val.target.value", val.target.value);
+    const currentValue = val?.target?.value;
+    if (currentValue >= 4 && currentValue <= 8) {
+      setInputvalue(Number(currentValue));
+      console.log("val.target.value", currentValue);
       console.log("inputvalue", inputvalue);
-      clickhandler(inputvalue);
       return;
     }
     setInputvalue((prev) => prev);
@@ -30,10 +33,11 @@ const NumOfPlayers = ({
     return (
       <div
         className={`noOfPlayers ${playerCount > 3 ? "active" : ""}`}
-        onClick={() => clickhandler(inputvalue)}
+        onClick={() => clickhandler?.(inputvalue)}
       >
         Custom no.
         <input
+          className="playerNumInput"
           type="number"
           max={8}
           min={4}
@@ -46,7 +50,7 @@ const NumOfPlayers = ({
   return (
     <div
       className={`noOfPlayers ${playerCount == value ? "active" : ""}`}
-      onClick={() => clickhandler(value)}
+      onClick={() => clickhandler?.(value)}
     >
       Player{value == 1 ? " " : "s "}
       {value}

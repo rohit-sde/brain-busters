@@ -14,7 +14,7 @@ import NumOfPlayers from "./components/buttons/NumOfPlayers.tsx";
 import NextButton from "../../Components/smallcomponents/NextButton/NextButton.tsx";
 
 const Home = () => {
-  const [playerCount, SetPlayerCount] = useState(0);
+  const [playerCount, SetPlayerCount] = useState<number>(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const NoOfPlayers = useSelector((v) => v.About.NoOfPlayers);

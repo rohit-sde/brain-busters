@@ -22,7 +22,7 @@
   transform: scale(1.07);
 }
 
-input {
+.playerNumInput {
   font-family: "Atma", system-ui;
   font-weight: 600;
   background-color: transparent;
@@ -35,12 +35,12 @@ input {
   text-align: center;
   /* transition: all 0.2s linear; */
 }
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+.playerNumInput[type="number"]::-webkit-outer-spin-button,
+.playerNumInput[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input:focus-visible {
+.playerNumInput:focus-visible {
   outline: 1px;
 }
