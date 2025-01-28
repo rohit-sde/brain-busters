@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import "./GridCards.css";
-import handleCardsDetails from "../../funcs/CardsGenerator";
+import handleCardsDetails from "../../funcs & conts/CardsGenerator";
 import { SetCurrentTurn, SetScore } from "../../Store/AboutGame";
 import { useDispatch, useSelector } from "react-redux";
 
