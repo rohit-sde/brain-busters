@@ -27,7 +27,9 @@ interface girlsName {
 export const indianGirlsNamesByLetter: girlsName = {
   a: new Set([
     "aadhya",
+    "ayesha",
     "aarti",
+    "ashu",
     "aaparna",
     "ananya",
     "anika",
@@ -482,6 +484,7 @@ export const indianGirlsNamesByLetter: girlsName = {
   ]),
   m: new Set([
     "manasi",
+    "mansi",
     "manju",
     "madhavi",
     "madhuri",
