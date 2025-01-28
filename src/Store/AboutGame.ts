@@ -55,7 +55,7 @@ const About_Players = createSlice({
             id: i + 1,
             playerName: `Player ${i + 1}`,
             character: "",
-            gender: "M",
+            gender: Math.random() < 0.5 ? "M" : "F",
             Score: 0,
             time: { min: 5, sec: 30 },
             isInput: false,
