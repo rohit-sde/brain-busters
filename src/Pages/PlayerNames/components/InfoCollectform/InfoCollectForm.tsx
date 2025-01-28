@@ -1,7 +1,5 @@
-import { createRef, Fragment, useEffect, useRef, useState } from "react";
-import { isNameOfGirl } from "../../../../funcs & conts/checkfuncs.ts";
+import { Fragment, useState } from "react";
 import "./InfoForm.css";
-import Loader from "../../../../Components/smallcomponents/loader/Loader.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { SetPlayerDetails } from "../../../../Store/AboutGame.ts";
 import { useNavigate } from "react-router";
@@ -30,7 +28,7 @@ const InfoForm = () => {
   return (
     <Fragment>
       <div className="nameingContainer">
-        {playersinfo?.map((player: object, i: number) => {
+        {playersinfo?.map((player: Player, i: number) => {
           return (
             <EditorSlip
               key={i}
@@ -40,54 +38,6 @@ const InfoForm = () => {
             />
           );
         })}
-        {/* {playersinfo?.map((player: object, i: number) => {
-          return (
-            <div className="playerInfo" key={i}>
-              {player?.isInput ? (
-                <input
-                  className="nameInput"
-                  defaultValue={player?.playerName}
-                  ref={inputRefs.current[i]}
-                  onKeyDown={(e: React.KeyboardEvent) => {
-                    if (e.key === "Enter") {
-                      handleEditBtn(i);
-                    }
-                  }}
-                />
-              ) : (
-                <span className="editedName">{player?.playerName}</span>
-              )}
-              <button
-                className="editButton"
-                onClick={() => {
-                  handleEditBtn(i);
-                }}
-                type="submit"
-              >
-                {player.isInput ? "✔️" : "✏️"}
-              </button>
-              <span className="emojiFace">
-                {player.isLoading ? <Loader /> : <img src={player.character} />}
-              </span>
-              <button
-                className={`genderBtn ${player.gender === "M" && "Active"}`}
-                onClick={() => {
-                  handleGender("M", i);
-                }}
-              >
-                M
-              </button>
-              <button
-                className={`genderBtn ${player.gender === "F" && "Active"}`}
-                onClick={() => {
-                  handleGender("F", i);
-                }}
-              >
-                F
-              </button>
-            </div>
-          );
-        })} */}
       </div>
       <button className="LetGoBtn" onClick={handleNextPage}>
         Let's Go <span>➙</span>
