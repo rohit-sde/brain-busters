@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetPlayerDetails } from "../../../../Store/AboutGame.ts";
 import { useNavigate } from "react-router";
 import EditorSlip from "../EditorSlip/EditorSlip.tsx";
+import NextButton from "../../../../Components/smallcomponents/NextButton/NextButton.tsx";
 
 interface Player {
   playerName: string;
@@ -39,11 +40,18 @@ const InfoForm = () => {
           );
         })}
       </div>
-      <button className="LetGoBtn" onClick={handleNextPage}>
-        Let's Go <span>➙</span>
-      </button>
+      <NextButton
+        isactive={true}
+        value="Let's Go   ➤"
+        buttonHandler={handleNextPage}
+      />
     </Fragment>
   );
 };
+{
+  /* <button className="LetGoBtn" onClick={handleNextPage}>
+  Let's Go <span>➙</span>
+</button> */
+}
 
 export default InfoForm;
