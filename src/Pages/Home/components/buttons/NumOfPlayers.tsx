@@ -15,16 +15,13 @@ const NumOfPlayers = ({
   clickhandler,
 }: arguments) => {
   const [inputvalue, setInputvalue] = useState(4);
-  // console.log(playerCount);
-  useEffect(() => {
-    clickhandler?.(inputvalue);
-  }, [inputvalue]);
+  // useEffect(() => {
+  //   clickhandler?.(inputvalue);
+  // }, [inputvalue]);
   function handleInput(val: object) {
     const currentValue = val?.target?.value;
     if (currentValue >= 4 && currentValue <= 8) {
       setInputvalue(Number(currentValue));
-      // console.log("val.target.value", currentValue);
-      // console.log("inputvalue", inputvalue);
       return;
     }
     setInputvalue((prev) => prev);

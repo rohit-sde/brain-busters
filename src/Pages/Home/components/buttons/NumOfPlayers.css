@@ -27,7 +27,7 @@
   font-weight: 600;
   background-color: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   margin-left: 4px;
   color: var(--text-color);
   border-bottom: 0.01px solid white;
@@ -43,4 +43,13 @@
 
 .playerNumInput:focus-visible {
   outline: 1px;
+}
+
+@media screen and (max-width: 430px) {
+  .noOfPlayers {
+    margin: 0.4rem;
+    font-size: 1.2rem;
+    padding: 5px;
+    width: 80%;
+  }
 }

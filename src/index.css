@@ -31,3 +31,9 @@ body {
   /* align-items: center;
   justify-content: center; */
 }
+
+@media screen and (max-width: 430px) {
+  body {
+    height: calc(100vh - 17px);
+  }
+}
