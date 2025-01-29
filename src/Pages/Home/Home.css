@@ -14,9 +14,9 @@
 .HomeContainer {
   /* height: 50%; */
   /* width: 33%; */
-  padding: 20px;
   display: flex;
   flex-direction: column;
+  padding: 20px;
   border-radius: 20px;
   box-shadow: 1px 1px 2px var(--primary-30);
 }
@@ -39,3 +39,14 @@
 }
 
 /* media querry for mobile view */
+
+@media screen and (max-width: 430px) {
+  .Title {
+    font-size: 3rem;
+  }
+  .MultiPlayerSec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

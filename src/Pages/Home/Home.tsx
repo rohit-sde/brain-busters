@@ -54,7 +54,7 @@ const Home = () => {
       <NextButton
         value={"Next"}
         buttonHandler={NextButtonHandler}
-        playerCount={playerCount}
+        isactive={playerCount !== 0}
       />
     </div>
   );
