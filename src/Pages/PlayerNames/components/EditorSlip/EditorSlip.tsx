@@ -130,6 +130,15 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
   }, []);
   return (
     <div className="editorSlip">
+      <span className="emojiFace">
+        {value.isLoading ? (
+          <Loader />
+        ) : emojis.includes(value.character) ? (
+          <span>{value.character}</span>
+        ) : (
+          <img src={`${value.character}`} />
+        )}
+      </span>
       {value?.isInput ? (
         <input
           className="nameInput"
@@ -145,40 +154,33 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
       ) : (
         <span className="editedName">{value?.playerName}</span>
       )}
-      <button
-        className="editButton"
-        onClick={() => {
-          handleEditBtn();
-        }}
-        type="submit"
-      >
-        {value.isInput ? "✔️" : "✏️"}
-      </button>
-      <span className="emojiFace">
-        {value.isLoading ? (
-          <Loader />
-        ) : emojis.includes(value.character) ? (
-          <span>{value.character}</span>
-        ) : (
-          <img src={`${value.character}`} />
-        )}
+      <span className="tools">
+        <button
+          className="editButton"
+          onClick={() => {
+            handleEditBtn();
+          }}
+          type="submit"
+        >
+          {value.isInput ? "✔️" : "✏️"}
+        </button>
+        <button
+          className={`genderBtn ${value.gender === "M" && "Active"}`}
+          onClick={() => {
+            handleGender("M");
+          }}
+        >
+          M
+        </button>
+        <button
+          className={`genderBtn ${value.gender === "F" && "Active"}`}
+          onClick={() => {
+            handleGender("F");
+          }}
+        >
+          F
+        </button>
       </span>
-      <button
-        className={`genderBtn ${value.gender === "M" && "Active"}`}
-        onClick={() => {
-          handleGender("M");
-        }}
-      >
-        M
-      </button>
-      <button
-        className={`genderBtn ${value.gender === "F" && "Active"}`}
-        onClick={() => {
-          handleGender("F");
-        }}
-      >
-        F
-      </button>
     </div>
   );
 };
