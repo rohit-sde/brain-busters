@@ -5,27 +5,3 @@
   border-radius: 5px;
   margin-bottom: 5px;
 }
-/* let go button for play the game */
-.LetGoBtn {
-  font-family: "Atma", system-ui;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 1.8rem;
-  border-radius: 5px;
-  padding: 2px 125px;
-  color: var(--text-color);
-  border: 1px solid var(--secondary-20);
-  background-color: transparent;
-  user-select: none;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.LetGoBtn:hover {
-  background-color: var(--secondary-20);
-}
-
-.LetGoBtn > span {
-  font-weight: 900;
-  margin-left: 45px;
-}
