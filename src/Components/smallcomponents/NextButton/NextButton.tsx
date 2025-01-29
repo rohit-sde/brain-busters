@@ -3,15 +3,15 @@ import "./NextButton.css";
 interface arguments {
   value: string;
   buttonHandler: () => void;
-  playerCount: number;
+  isactive: boolean;
 }
 
-const NextButton = ({ value, buttonHandler, playerCount }: arguments) => {
+const NextButton = ({ value, buttonHandler, isactive }: arguments) => {
   return (
     <button
-      className={`NextButton${playerCount !== 0 ? "active" : ""}`}
+      className={`NextButton${isactive ? "active" : ""}`}
       onClick={buttonHandler}
-      disabled={playerCount === 0}
+      disabled={!isactive}
     >
       {value}
     </button>

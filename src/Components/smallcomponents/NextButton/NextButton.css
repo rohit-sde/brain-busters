@@ -18,3 +18,10 @@
   background-color: var(--secondary-20);
   bottom: -1px;
 }
+
+@media screen and (max-width: 430px) {
+  .NextButton,
+  .NextButtonactive {
+    margin: 10px 0px 0px 0px;
+  }
+}
