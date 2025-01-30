@@ -158,10 +158,11 @@ const Cards_Data = createSlice({
 // Theme
 const App_Theme = createSlice({
   name: "App_Theme",
-  initialState: { state: false },
+  initialState: { state: "dark" },
   reducers: {
     SetTheme(state, action) {
-      state.state = action.payload;
+      const updatedValue = action.payload;
+      state.state = updatedValue.toString().toLowerCase();
     },
   },
 });

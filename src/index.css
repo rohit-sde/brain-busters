@@ -1,12 +1,19 @@
-[data-theme="Light"] {
+[data-theme="light"] {
+  --primary-30: #a89e47;
+  --secondary-20: #c99b50;
   --bg-color: #f5f5dc;
   --text-color: black;
+  --font-weight: 600;
 }
 
-[data-theme="Dark"] {
+[data-theme="dark"] {
+  --primary-30: #8a8a60;
+  --secondary-20: #d0a15d;
   --bg-color: #2c2f2b;
   --text-color: #f0f0f0;
+  --font-weight: 500;
 }
+
 /* :root {
   --bg-color: #1f1e1e;
   --text-color: #e8e8e8;

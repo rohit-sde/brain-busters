@@ -1,4 +1,4 @@
-[data-theme="Light"] {
+/* [data-theme="Light"] {
   --font-weight: 600;
   --primary-30: #444125;
   --secondary-20: #8d6e3b;
@@ -8,7 +8,7 @@
   --font-weight: 500;
   --primary-30: #8a8a60;
   --secondary-20: #d0a15d;
-}
+} */
 
 /* Home container rapper */
 .HomeContainer {
