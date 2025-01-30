@@ -4,3 +4,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.themesWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 9px 0px 7px;
+  /* border: 1px solid white; */
+}
