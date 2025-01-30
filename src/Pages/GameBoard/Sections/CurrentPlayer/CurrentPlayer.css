@@ -1,0 +1,8 @@
+.currentPlayerWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}

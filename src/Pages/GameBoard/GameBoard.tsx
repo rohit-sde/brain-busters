@@ -1,4 +1,4 @@
-import LeaderBoard from "../../Components/leaderBoard/LeaderBoard.tsx";
+// import LeaderBoard from "../../Components/leaderBoard/LeaderBoard.tsx";
 import { SetLeaderBoard } from "../../Store/AboutGame.ts";
 import { useDispatch } from "react-redux";
 import value from "../../Store/Store.ts";
@@ -7,7 +7,8 @@ import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import LiveRanking from "../../Components/LiveRanking/LiveRanking.tsx";
 import GridCards from "../../Components/GridCards/GridCards.tsx";
-import BoardSetter from "../../Components/BoardSetter/BoardSetter.tsx";
+import CurrentPlayer from "./Sections/CurrentPlayer/CurrentPlayer.tsx";
+import BoardSetter from "./Sections/BoardSetter/BoardSetter.tsx";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,8 @@ const GameBoard = () => {
   }
   return (
     <div className="GameBoard">
-      <LeaderBoard />
+      {/* <LeaderBoard /> */}
+      <CurrentPlayer />
       <div className="Lowerpart">
         <LiveRanking />
         <GridCards />

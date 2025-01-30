@@ -22,6 +22,7 @@ const NumOfPlayers = ({
     const currentValue = val?.target?.value;
     if (currentValue >= 4 && currentValue <= 8) {
       setInputvalue(Number(currentValue));
+      clickhandler?.(Number(currentValue));
       return;
     }
     setInputvalue((prev) => prev);

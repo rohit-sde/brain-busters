@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
-import value from "../../../Store/Store";
 import "./CardsEle.css";
-import { useDispatch } from "react-redux";
-import { SetCards } from "../../../Store/AboutGame";
+import { useDispatch, useSelector } from "react-redux";
+import { SetCards } from "../../../../Store/AboutGame";
 
 const CardsEle = () => {
   const [cardType, setCardsType] = useState("ABC");
+  const typeOfCards = useSelector((v) => v.Board.Cards.TypeOfCards);
   const dispatch = useDispatch();
   useEffect(() => {
-    const unsubscribe = value.subscribe(() => {
-      const cardsType = value.getState().Board.Cards.TypeOfCards;
-      // console.log(cardsType, "CardsEle");
-      setCardsType(cardsType);
-    });
+    setCardsType(typeOfCards);
+  }, [typeOfCards]);
+  // useEffect(() => {
+  //   const unsubscribe = value.subscribe(() => {
+  //     const cardsType = value.getState().Board.Cards.TypeOfCards;
+  //     // console.log(cardsType, "CardsEle");
+  //     setCardsType(cardsType);
+  //   });
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
   function checkTypeOfCards(val: string) {
     if (cardType === val) return true;
   }

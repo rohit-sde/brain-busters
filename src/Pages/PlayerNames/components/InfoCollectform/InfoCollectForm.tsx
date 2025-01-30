@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetPlayerDetails } from "../../../../Store/AboutGame.ts";
 import { useNavigate } from "react-router";
 import EditorSlip from "../EditorSlip/EditorSlip.tsx";
-import NextButton from "../../../../Components/smallcomponents/NextButton/NextButton.tsx";
+import NextButton from "../../../../Tools/NextButton/NextButton.tsx";
 
 interface Player {
   playerName: string;

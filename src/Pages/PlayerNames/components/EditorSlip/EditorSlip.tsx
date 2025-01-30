@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import Loader from "../../../../Components/smallcomponents/loader/Loader";
+import Loader from "../../../../Tools/loader/Loader";
 import "./EditorSlip.css";
 import { isNameOfGirl } from "../../../../funcs & conts/checkfuncs";
 import { emojis } from "../../conts/conts";

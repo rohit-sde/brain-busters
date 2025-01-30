@@ -1,6 +1,6 @@
 import "./Timer.css";
 
-const Timer = ({ Size }: { Size: number }) => {
+const Timer = ({ Size = 801 }: { Size?: number }) => {
   // console.log(Size);
   return (
     <div className="timer">

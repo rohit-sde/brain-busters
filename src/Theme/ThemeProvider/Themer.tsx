@@ -5,7 +5,7 @@ import {
 } from "react-redux";
 
 import "./Themer.css";
-import { SetTheme } from "../../../Store/AboutGame";
+import { SetTheme } from "../../Store/AboutGame";
 
 const Themer = () => {
   const [checked, setChecked] = useState(true);

@@ -81,7 +81,7 @@ const LiveRanking = () => {
           );
         })}
       </div>
-      <Timer Size={WindowSize} />
+      {/* <Timer Size={WindowSize} /> */}
     </div>
   );
 };
