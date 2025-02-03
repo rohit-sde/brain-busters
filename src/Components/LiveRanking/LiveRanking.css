@@ -16,7 +16,7 @@
   flex-direction: column;
   overflow: auto;
   /* flex: 1; */
-  max-height: 500px;
+  max-height: 528px;
 }
 
 .playerCard {
