@@ -1,6 +1,6 @@
 // import LeaderBoard from "../../Components/leaderBoard/LeaderBoard.tsx";
 import { SetLeaderBoard } from "../../Store/AboutGame.ts";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import value from "../../Store/Store.ts";
 import "./GameBoard.css";
 import { useNavigate } from "react-router";
@@ -13,14 +13,15 @@ import BoardSetter from "./Sections/BoardSetter/BoardSetter.tsx";
 const GameBoard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const playersDetail = value.getState().About.PlayersDetails;
-  const leaderBoard = value.getState().products.LeaderBoard;
+  const playersDetail = useSelector((val) => val.About.PlayersDetails);
+  const leaderBoard = useSelector((val) => val.products.LeaderBoard);
   // console.log(playersDetail);
   useEffect(() => {
     if (playersDetail.length === 0) {
       navigate("/");
     }
   });
+
   if (playersDetail.length !== leaderBoard.length) {
     for (let i = 0; i < playersDetail.length; i++) {
       const player = {
@@ -30,6 +31,7 @@ const GameBoard = () => {
       dispatch(SetLeaderBoard(player));
     }
   }
+
   return (
     <div className="GameBoard">
       {/* <LeaderBoard /> */}
