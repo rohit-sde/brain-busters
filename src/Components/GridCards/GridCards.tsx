@@ -3,6 +3,7 @@ import "./GridCards.css";
 import handleCardsDetails from "../../funcs & conts/CardsGenerator";
 import { SetCurrentTurn, SetScore } from "../../Store/AboutGame";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 
 interface grid {
   TypeOfCards: string;
@@ -98,8 +99,28 @@ const GridCards = () => {
           </span>
         );
       })}
+      {grid.GridSize == 3 || grid.GridSize == 5 || grid.GridSize == 7 ? (
+        <BoxSpan>o</BoxSpan>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
 
 export default GridCards;
+
+const BoxSpan = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+  /* border: 1px solid white; */
+  background-color: var(--primary-30);
+  border: none;
+  width: 100%;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  user-select: none;
+  cursor: pointer;
+`;
