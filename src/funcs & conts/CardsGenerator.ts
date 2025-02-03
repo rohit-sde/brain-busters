@@ -1,7 +1,7 @@
 import { ABC, EMOJIS, SHAPES } from "./conts";
 
 export default function handleCardsDetails(topic: string, GridSize: number) {
-  const newnum = (GridSize * GridSize) / 2;
+  const newnum = Math.floor((GridSize * GridSize) / 2);
   if (topic == "ABC") {
     const slicedArray = ABC.slice(0, newnum);
     const concatedABC = slicedArray.concat(slicedArray);
@@ -26,7 +26,6 @@ export default function handleCardsDetails(topic: string, GridSize: number) {
     const sortedNum = updatedNum.sort(() => {
       return Math.random() - 0.5;
     });
-    // console.log(sortedNum);
     return [...sortedNum];
   } else if (topic == "SHAPES") {
     const slicedArray = SHAPES.slice(0, newnum);
