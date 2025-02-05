@@ -11,3 +11,44 @@
 .timer > span {
   font-size: calc(3vw + 0.8rem);
 }
+
+/* Animation when the time is near expiring */
+.near-timeup {
+  animation: blink 0.8s infinite alternate; /* Blinking effect */
+}
+
+/* Shaking animation when time is near end */
+.shake {
+  animation: shake 0.3s infinite ease-in-out;
+}
+
+/* Keyframe for blinking effect */
+@keyframes blink {
+  0% {
+    color: red;
+    text-shadow: red 0px 0 5px;
+  }
+  100% {
+    color: yellow;
+    /* text-shadow: yellow 0px 0 1px; */
+  }
+}
+
+/* Keyframe for shaking effect */
+@keyframes shake {
+  0% {
+    transform: translateX(-5px);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
