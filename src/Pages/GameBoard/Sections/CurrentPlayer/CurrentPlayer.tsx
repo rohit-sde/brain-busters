@@ -23,11 +23,14 @@ const CurrentPlayer = () => {
   useEffect(() => {
     SetPlayersArray([...PlayersDetails]);
   }, [PlayersDetails, CurrentTurn]);
-  const SortedList = PlayersArray?.sort(
+  const SortedList = [...PlayersArray]?.sort(
     (a: { Score: number }, b: { Score: number }) => b.Score - a.Score
   );
-  const currentPlayer: IPlayersArray = SortedList?.[CurrentTurn];
+  // console.log("PlayersArray", PlayersArray);
+  // console.log("CurrentTurn", CurrentTurn);
+  const currentPlayer: IPlayersArray = PlayersArray?.[CurrentTurn];
   const position = SortedList.findIndex((val) => val == currentPlayer);
+  // console.log("PlayersArray?.[CurrentTurn]", PlayersArray?.[CurrentTurn].playerName);
   return (
     <StyledWrapper>
       <CurrentCard

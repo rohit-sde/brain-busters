@@ -1,5 +1,5 @@
 import InputSection from "../../../../Components/smallcomponents/InputSection/InputSection";
-import Reseter from "../../../../Components/smallcomponents/Reseter/Reseter";
+import Reseter from "../../features/Reseter/Reseter";
 import CardsEle from "../../Components/CardsEle/CardsEle";
 import "./BoardSetter.css";
 

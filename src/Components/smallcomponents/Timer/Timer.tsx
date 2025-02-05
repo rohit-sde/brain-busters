@@ -74,7 +74,7 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
 
   return (
     <div>
-      <div className={`timer ${isClassAdd}`}>
+      <div className={`timer ${isClassAdd()}`}>
         {Size > 800 && (
           <span>
             0{min} : {sec < 10 && "0"}
