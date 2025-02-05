@@ -1,17 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./InputSection.css";
 import { SetCards, SetPlayerDetails } from "../../../Store/AboutGame";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const InputSection = () => {
-  const playersarray = useSelector((v) => v.About.PlayersDetails);
-  const playerstime = playersarray.map((ele: object) => ele.time);
+  const playersDetails = useSelector((v) => v.About.PlayersDetails);
+  const [playersArray, SetPlayersArray] = useState([...playersDetails]);
+  const playerstime = playersArray.map((ele: object) => ele.time);
   const GridNum = useSelector((v) => v.Board.Cards.GridSize);
   const [time, setTime] = useState(playerstime);
   const dispatch = useDispatch();
 
   function handleInputs(e: any, type) {
-    let value = parseFloat(e.target.value);
+    const value = parseFloat(e.target.value);
     let min = parseFloat(e.target.getAttribute("min"));
     let max = parseFloat(e.target.getAttribute("max"));
 
@@ -22,40 +23,48 @@ const InputSection = () => {
     }
 
     if (type == "grid") {
-      dispatch(SetCards(Number(e.target.value)));
+      console.log("grid");
+      dispatch(SetCards(value));
     } else if (type == "min") {
-      setTime((prev) => ({ ...prev, min: e.target.value }));
+      setTime((prev) => prev.map((val) => ({ ...val, min: value })));
     } else if (type == "sec") {
-      setTime((prev) => ({ ...prev, sec: e.target.value }));
+      console.log("sec");
+      setTime((prev) => prev.map((val) => ({ ...val, sec: value })));
     }
   }
+  // console.log("min", time[0].min);
+  // console.log("sec", time[0].sec);
 
   function handleSetButton() {
-    playersarray.forEach((ele: object, i: number) => ({
-      ...ele,
-      time: time[i],
-    }));
-    dispatch(SetPlayerDetails(playersarray));
+    console.log("hello");
+    SetPlayersArray((prev) =>
+      prev.map((val, i) => ({ ...val, time: time[i] }))
+    );
   }
+
+  useEffect(() => {
+    dispatch(SetPlayerDetails(playersArray));
+  }, [playersArray]);
   return (
     <div className="InputSectionWrapper">
       <span className="GridSize">
-        <label htmlFor="GridSize">Grid Size :- </label>
+        <label htmlFor="GridSize">Grid Size :</label>
         <input
           className="minSecGridInput"
           type="number"
           name="GridSize"
           value={GridNum}
+          onChange={(e) => handleInputs(e, "grid")}
           max={7}
           min={2}
-          onChange={(e) => handleInputs(e, "grid")}
         />
       </span>
       <span className="SetTime">
         <span>
-          <label htmlFor="minutes">Min :-</label>
+          <label htmlFor="minutes">Min :</label>
           <input
             className="minSecGridInput"
+            name="minutes"
             type="number"
             defaultValue={time[0]?.min}
             onChange={(e) => handleInputs(e, "min")}
@@ -64,14 +73,15 @@ const InputSection = () => {
           />
         </span>
         <span>
-          <label htmlFor="seconds">Sec :-</label>
+          <label htmlFor="seconds">Sec :</label>
           <input
             className="minSecGridInput"
+            name="seconds"
             type="number"
             defaultValue={time[0]?.sec}
             onChange={(e) => handleInputs(e, "sec")}
             min={0}
-            max={60}
+            max={59}
           />
         </span>
       </span>
