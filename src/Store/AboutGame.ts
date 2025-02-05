@@ -80,8 +80,12 @@ const About_Players = createSlice({
         action.payload.editedValue;
     },
     SetLeftTime(state, action) {
-      const { Player, Time } = action.payload;
-      state.TimeLeft[Player] = Time;
+      console.log(action);
+      const payload = action.payload;
+      const playertime = state.PlayersDetails.findIndex(
+        (player) => player.id == payload?.currentPlayerId
+      );
+      state.PlayersDetails[playertime].time = payload?.Time;
     },
     SetCurrentTurn(state) {
       if (state.NoOfPlayers === state.CurrentTurn) {
