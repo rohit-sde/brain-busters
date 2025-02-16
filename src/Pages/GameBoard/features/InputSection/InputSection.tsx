@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./InputSection.css";
+import { useEffect, useState } from "react";
 import {
   gamestate,
   SetCards,
   SetPlayerDetails,
-} from "../../../Store/AboutGame";
-import { useEffect, useState } from "react";
+} from "../../../../Store/AboutGame";
 
 const InputSection = () => {
   const playersDetails = useSelector((v: gamestate) => v.About.PlayersDetails);

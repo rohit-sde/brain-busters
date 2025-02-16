@@ -4,7 +4,8 @@
   border: 1px solid var(--primary-30);
   padding: 5px;
   margin-bottom: 5px;
-  border-radius: 29px 4px 4px 29px;
+  border-radius: 4px;
+  /* border-radius: 29px 4px 4px 29px; */
 }
 
 .nameInput {
@@ -65,7 +66,7 @@
 }
 
 /* emoji face for player acc to her name */
-.emojiFace {
+/* .emojiFace {
   height: 39px;
   aspect-ratio: 1/1;
   border-radius: 100%;
@@ -73,7 +74,7 @@
   margin-right: 5px;
   align-items: center;
   justify-content: center;
-  /* background-color: aqua; */
+  background-color: aqua;
 }
 
 .emojiFace > img,
@@ -81,7 +82,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
 
 /* Gender */
 .genderBtn {

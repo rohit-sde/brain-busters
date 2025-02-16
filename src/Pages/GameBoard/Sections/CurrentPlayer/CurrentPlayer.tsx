@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Timer from "../../../../Components/smallcomponents/Timer/Timer";
 import CurrentCard from "../../Components/CurrentPlayerCard/CurrentCard";
 import "./CurrentPlayer.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { gamestate } from "../../../../Store/AboutGame";
+import Timer from "../../../../Components/Timer/Timer";
 
 interface IPlayersArray {
   id: number;

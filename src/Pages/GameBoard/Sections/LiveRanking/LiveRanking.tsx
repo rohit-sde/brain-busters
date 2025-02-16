@@ -1,24 +1,17 @@
 import "./LiveRanking.css";
-import value from "../../Store/Store";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { gamestate, SetPlayerDetails, SetScore } from "../../Store/AboutGame";
-import Timer from "../smallcomponents/Timer/Timer";
-import { emojis } from "../../Pages/PlayerNames/conts/conts";
-import styled from "styled-components";
-
-interface playersDetails {
-  id: number;
-  playerName: string;
-  character: string;
-  gender: string;
-  Score: number;
-  isInput: boolean;
-  isLoading: boolean;
-}
+import PlayerCard from "../../Components/PlayerCard/PlayerCard";
+import {
+  gamestate,
+  playerobject,
+  SetPlayerDetails,
+} from "../../../../Store/AboutGame";
+import { emojis } from "../../../PlayerNames/const/const";
+import { isNameOfGirl } from "../../../../funcs & conts/checkfuncs";
 
 const LiveRanking = () => {
-  const [playersDetail, setPlayersDetail] = useState<playersDetails[]>([]);
+  const [playersDetail, setPlayersDetail] = useState<playerobject[]>([]);
   const [WindowSize, setWindowSize] = useState(window.innerWidth);
   const CurrentDetails = useSelector(
     (val: gamestate) => val.About.PlayersDetails
@@ -64,24 +57,30 @@ const LiveRanking = () => {
         {sortedPlayers?.map((player, i) => {
           const position = i + 1;
           return (
-            <div className="playerCard" key={i}>
-              {WindowSize > 1000 &&
-                (sortedPlayers.length == 1
-                  ? "Solo"
-                  : `${position}${getRank(position)}`)}
-              <span
-                className={`playerImage num${
-                  sortedPlayers.length == 1 ? "" : position
-                }`}
-              >
-                {emojis.includes(player.character) ? (
-                  <span>{player.character}</span>
-                ) : (
-                  <img src={`${player.character}`} />
-                )}
-              </span>
-              <NameWrapper>{WindowSize > 860 && player.playerName}</NameWrapper>
-            </div>
+            <PlayerCard
+              key={i}
+              WindowSize={WindowSize}
+              sortedPlayers={sortedPlayers}
+              position={position}
+              player={player}
+            /> // <div className="playerCard" key={i}>
+            //   {WindowSize > 1000 &&
+            //     (sortedPlayers.length == 1
+            //       ? "Solo"
+            //       : `${position}${getRank(position)}`)}
+            //   <span
+            //     className={`playerImage num${
+            //       sortedPlayers.length == 1 ? "" : position
+            //     }`}
+            //   >
+            //     {emojis.includes(player.character) ? (
+            //       <span>{player.character}</span>
+            //     ) : (
+            //       <img src={`${player.character}`} />
+            //     )}
+            //   </span>
+            //   <NameWrapper>{WindowSize > 860 && player.playerName}</NameWrapper>
+            // </div>
           );
         })}
       </div>
@@ -91,10 +90,6 @@ const LiveRanking = () => {
 };
 
 export default LiveRanking;
-
-const NameWrapper = styled.span`
-  text-wrap: nowrap;
-`;
 
 // console.log(sortedPlayers, "sortedPlayers");
 

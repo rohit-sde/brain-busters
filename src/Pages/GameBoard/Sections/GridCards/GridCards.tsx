@@ -1,9 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import "./GridCards.css";
-import handleCardsDetails from "../../funcs & conts/CardsGenerator";
-import { SetCurrentTurn, SetScore } from "../../Store/AboutGame";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import handleCardsDetails from "../../../../funcs & conts/CardsGenerator";
+import {
+  gamestate,
+  SetCurrentTurn,
+  SetScore,
+} from "../../../../Store/AboutGame";
 
 interface grid {
   TypeOfCards: string;
@@ -11,10 +15,18 @@ interface grid {
 }
 
 const GridCards = () => {
-  const updatedCardSetting = useSelector((state) => state.Board.Cards);
-  const currentPlayer = useSelector((state) => state.About.CurrentTurn);
-  const isPlayStart = useSelector((state) => state.Board.isPlayStart);
-  const isResetGame = useSelector((state) => state.Board.isResetGame);
+  const updatedCardSetting = useSelector(
+    (state: gamestate) => state.Board.Cards
+  );
+  const currentPlayer = useSelector(
+    (state: gamestate) => state.About.CurrentTurn
+  );
+  const isPlayStart = useSelector(
+    (state: gamestate) => state.Board.isPlayStart
+  );
+  const isResetGame = useSelector(
+    (state: gamestate) => state.Board.isResetGame
+  );
 
   const [grid, setgrid] = useState<grid>(updatedCardSetting);
   const [isFlipped, setFlipped] = useState<number[]>([]);

@@ -1,20 +1,21 @@
 // import LeaderBoard from "../../Components/leaderBoard/LeaderBoard.tsx";
-import { SetLeaderBoard } from "../../Store/AboutGame.ts";
+import { SetLeaderBoard, SetPlayerDetails } from "../../Store/AboutGame.ts";
 import { useDispatch, useSelector } from "react-redux";
-import value from "../../Store/Store.ts";
 import "./GameBoard.css";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
-import LiveRanking from "../../Components/LiveRanking/LiveRanking.tsx";
-import GridCards from "../../Components/GridCards/GridCards.tsx";
 import CurrentPlayer from "./Sections/CurrentPlayer/CurrentPlayer.tsx";
 import BoardSetter from "./Sections/BoardSetter/BoardSetter.tsx";
+import LiveRanking from "./Sections/LiveRanking/LiveRanking.tsx";
+import GridCards from "./Sections/GridCards/GridCards.tsx";
+import { emojis } from "../PlayerNames/const/const.ts";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const playersDetail = useSelector((val) => val.About.PlayersDetails);
   const leaderBoard = useSelector((val) => val.products.LeaderBoard);
+
   // console.log(playersDetail);
   useEffect(() => {
     if (playersDetail.length === 0) {

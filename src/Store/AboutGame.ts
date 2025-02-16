@@ -38,7 +38,7 @@ interface CardsDataState {
   IsSolved: number[];
 }
 
-interface playerobject {
+export interface playerobject {
   Score: number;
   character: string;
   gender: string;

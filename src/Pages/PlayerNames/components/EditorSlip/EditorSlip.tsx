@@ -1,20 +1,13 @@
 import { useEffect, useRef } from "react";
-import Loader from "../../../../Components/loader/Loader";
+// import Loader from "../../../../Components/loader/Loader";
 import "./EditorSlip.css";
 import { isNameOfGirl } from "../../../../funcs & conts/checkfuncs";
+import { playerobject } from "../../../../Store/AboutGame";
 import { emojis } from "../../const/const";
 
-interface Player {
-  playerName: string;
-  isInput: boolean;
-  character: string | null;
-  gender: "M" | "F";
-  isLoading: boolean;
-}
-
 interface argument {
-  value: Player;
-  setPlayersinfo: React.Dispatch<React.SetStateAction<Player[]>>;
+  value: playerobject;
+  setPlayersinfo: React.Dispatch<React.SetStateAction<playerobject[]>>;
   index: number;
 }
 
@@ -42,7 +35,7 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
       const data = await response.blob();
       const imageUrl = URL.createObjectURL(data);
 
-      setPlayersinfo((prev: Player[]) =>
+      setPlayersinfo((prev: playerobject[]) =>
         prev.map((player, k) =>
           k === index
             ? { ...player, character: imageUrl, isLoading: false }
@@ -52,7 +45,7 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
     } catch (error) {
       const uniqueNo = Math.floor(Math.random() * emojis.length);
       emojis.filter((_, i) => uniqueNo !== i);
-      setPlayersinfo((prev: Player[]) =>
+      setPlayersinfo((prev: playerobject[]) =>
         prev.map((player, k) =>
           k === index
             ? {
@@ -76,12 +69,10 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
       const gender = isGirl ? "F" : "M";
       const imageUrl = `https://avatar.iran.liara.run/public/${
         isGirl ? "girl" : "boy"
-      }?username=${currentvalue}
-
-`;
+      }?username=${currentvalue}`;
 
       // Update player state
-      setPlayersinfo((prev: Player[]) => {
+      setPlayersinfo((prev: playerobject[]) => {
         const updatedPlayer = {
           ...value,
           gender,
@@ -99,7 +90,7 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
     }
 
     // If no value, just toggle input state
-    setPlayersinfo((prev: Player[]) => {
+    setPlayersinfo((prev: playerobject[]) => {
       const updatedPlayer = { ...value, isInput: !value.isInput };
       return prev.map((player, k) =>
         k === index ? { ...updatedPlayer } : { ...player, isInput: false }
@@ -107,8 +98,8 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
     });
   }
   function handleGender(gen: string) {
-    setPlayersinfo((prev: Player[]) => {
-      return prev.map((player: Player, k: number) => {
+    setPlayersinfo((prev: playerobject[]) => {
+      return prev.map((player: playerobject, k: number) => {
         if (index === k) {
           const updatedPlayer = { ...player, gender: gen };
           const URL = `https://avatar.iran.liara.run/public/${
@@ -130,7 +121,7 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
   }, []);
   return (
     <div className="editorSlip">
-      <span className="emojiFace">
+      {/* <span className="emojiFace">
         {value.isLoading ? (
           <Loader />
         ) : emojis.includes(value.character) ? (
@@ -138,7 +129,7 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
         ) : (
           <img src={`${value.character}`} />
         )}
-      </span>
+      </span> */}
       {value?.isInput ? (
         <input
           className="nameInput"

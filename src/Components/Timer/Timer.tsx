@@ -5,7 +5,7 @@ import {
   gamestate,
   SetLeftTime,
   SetPlayerDetails,
-} from "../../../Store/AboutGame";
+} from "../../Store/AboutGame";
 
 const Timer = ({ Size = 801 }: { Size?: number }) => {
   const dispatch = useDispatch();
