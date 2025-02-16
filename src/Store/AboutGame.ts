@@ -1,6 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // Types for the state
+
+export interface gamestate {
+  About: AboutPlayersState;
+  Board: BoardSettingsState;
+  Cards: CardsDataState;
+  Theme: ITheme;
+}
+
+interface ITheme {
+  state: string;
+}
+
 interface AboutPlayersState {
   NoOfPlayers: number;
   PlayersDetails: playerobject[];
@@ -12,7 +24,7 @@ interface BoardSettingsState {
     TypeOfCards: string; // Assuming 'TypeOfCards' is a string, update if necessary
     GridSize: number;
   };
-  IsPlayStart: boolean;
+  isPlayStart: boolean;
   isResetGame: boolean;
 }
 
@@ -67,7 +79,7 @@ const About_Players = createSlice({
       const playerId = action.payload;
       state.PlayersDetails = state.PlayersDetails.map((ply) => {
         if (ply.id === playerId) {
-          return { ...ply, Score: ply.Score + 2 };
+          return { ...ply, Score: ply.Score + 1 };
         }
         return ply;
       });
@@ -105,7 +117,7 @@ const Board_Settings = createSlice({
       TypeOfCards: "ABC",
       GridSize: 4,
     },
-    IsPlayStart: false,
+    isPlayStart: false,
     isResetGame: false,
   } as BoardSettingsState,
   reducers: {
@@ -117,10 +129,13 @@ const Board_Settings = createSlice({
       state.Cards.TypeOfCards = action.payload;
     },
     SetIsPlayStart(state) {
-      state.IsPlayStart = !state.IsPlayStart;
+      state.isPlayStart = !state.isPlayStart;
     },
     SetIsResetGame(state) {
-      state.isResetGame = !state.isResetGame;
+      if (state.isPlayStart) {
+        state.isResetGame = !state.isResetGame;
+        state.isPlayStart = false;
+      }
     },
   },
 });

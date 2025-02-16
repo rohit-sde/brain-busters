@@ -1,13 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./InputSection.css";
-import { SetCards, SetPlayerDetails } from "../../../Store/AboutGame";
+import {
+  gamestate,
+  SetCards,
+  SetPlayerDetails,
+} from "../../../Store/AboutGame";
 import { useEffect, useState } from "react";
 
 const InputSection = () => {
-  const playersDetails = useSelector((v) => v.About.PlayersDetails);
+  const playersDetails = useSelector((v: gamestate) => v.About.PlayersDetails);
+  const GridNum = useSelector((v: gamestate) => v.Board.Cards.GridSize);
+  const isPlayStart = useSelector((v: gamestate) => v.Board.isPlayStart);
+
   const [playersArray, SetPlayersArray] = useState([...playersDetails]);
   const playerstime = playersArray.map((ele: object) => ele.time);
-  const GridNum = useSelector((v) => v.Board.Cards.GridSize);
   const [time, setTime] = useState(playerstime);
   const dispatch = useDispatch();
 
@@ -54,6 +60,7 @@ const InputSection = () => {
           type="number"
           name="GridSize"
           value={GridNum}
+          disabled={isPlayStart}
           onChange={(e) => handleInputs(e, "grid")}
           max={7}
           min={2}
@@ -67,6 +74,7 @@ const InputSection = () => {
             name="minutes"
             type="number"
             defaultValue={time[0]?.min}
+            disabled={isPlayStart}
             onChange={(e) => handleInputs(e, "min")}
             min={0}
             max={10}
@@ -80,12 +88,15 @@ const InputSection = () => {
             type="number"
             defaultValue={time[0]?.sec}
             onChange={(e) => handleInputs(e, "sec")}
+            disabled={isPlayStart}
             min={0}
             max={59}
           />
         </span>
       </span>
-      <button onClick={handleSetButton}>Set</button>
+      <button onClick={handleSetButton} disabled={isPlayStart}>
+        Set
+      </button>
     </div>
   );
 };

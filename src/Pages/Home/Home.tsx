@@ -11,7 +11,7 @@ import { SetPlayerNum } from "../../Store/AboutGame.ts";
 
 // Components
 import NumOfPlayers from "./components/buttons/NumOfPlayers.tsx";
-import NextButton from "../../Tools/NextButton/NextButton.tsx";
+import NextButton from "../../Components/NextButton/NextButton.tsx";
 
 const Home = () => {
   const [playerCount, SetPlayerCount] = useState<number>(0);

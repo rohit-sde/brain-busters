@@ -1,11 +1,41 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import {
+  gamestate,
+  SetIsPlayStart,
+  SetIsResetGame,
+  SetPlayerDetails,
+  SetPlayerNum,
+} from "../../../../Store/AboutGame";
+import { useNavigate } from "react-router";
 
 const Reseter = () => {
+  const isPlayStart = useSelector((v: gamestate) => v.Board.isPlayStart);
+
+  console.log(isPlayStart);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  function buttonHandler(v: object) {
+    const text = v.target.innerText;
+    if (text == "Reset") dispatch(SetIsResetGame());
+    if (text == "Play") dispatch(SetIsPlayStart());
+    if (text == "🏠") {
+      dispatch(SetPlayerNum(0));
+      dispatch(SetPlayerDetails([]));
+      navigate("/");
+    }
+  }
   return (
     <WrapperDiv>
-      <StylButton>Reset</StylButton>
-      <StylButton>Play</StylButton>
-      <HomeButton>🏠</HomeButton>
+      <StylButton onClick={buttonHandler} disabled={!isPlayStart}>
+        Reset
+      </StylButton>
+      <StylButton onClick={buttonHandler} disabled={isPlayStart}>
+        Play
+      </StylButton>
+      <HomeButton onClick={buttonHandler} disabled={isPlayStart}>
+        🏠
+      </HomeButton>
     </WrapperDiv>
   );
 };

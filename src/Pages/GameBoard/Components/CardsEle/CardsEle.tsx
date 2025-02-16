@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./CardsEle.css";
 import { useDispatch, useSelector } from "react-redux";
-import { SetCards } from "../../../../Store/AboutGame";
+import { gamestate, SetCards } from "../../../../Store/AboutGame";
 
 const CardsEle = () => {
+  const isPlayStart = useSelector((val: gamestate) => val.Board.isPlayStart);
+
   const [cardType, setCardsType] = useState("ABC");
   const typeOfCards = useSelector((v) => v.Board.Cards.TypeOfCards);
   const dispatch = useDispatch();
@@ -30,12 +32,14 @@ const CardsEle = () => {
         <button
           className={`${checkTypeOfCards("EMOJIS") && "currentType"}`}
           onClick={() => dispatch(SetCards("EMOJIS"))}
+          disabled={isPlayStart}
         >
           😁😉
         </button>
         <button
           className={`${checkTypeOfCards("ABC") && "currentType"}`}
           onClick={() => dispatch(SetCards("ABC"))}
+          disabled={isPlayStart}
         >
           ABC
         </button>
@@ -44,12 +48,14 @@ const CardsEle = () => {
         <button
           className={`${checkTypeOfCards("NUM") && "currentType"}`}
           onClick={() => dispatch(SetCards("NUM"))}
+          disabled={isPlayStart}
         >
           123
         </button>
         <button
           className={`${checkTypeOfCards("SHAPES") && "currentType"}`}
           onClick={() => dispatch(SetCards("SHAPES"))}
+          disabled={isPlayStart}
         >
           ◯◼△
         </button>

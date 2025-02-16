@@ -4,6 +4,7 @@ import CurrentCard from "../../Components/CurrentPlayerCard/CurrentCard";
 import "./CurrentPlayer.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { gamestate } from "../../../../Store/AboutGame";
 
 interface IPlayersArray {
   id: number;
@@ -17,8 +18,12 @@ interface IPlayersArray {
 
 const CurrentPlayer = () => {
   const [PlayersArray, SetPlayersArray] = useState<IPlayersArray[]>([]);
-  const PlayersDetails = useSelector((val) => val.About.PlayersDetails);
-  const CurrentTurn = useSelector((val) => val.About.CurrentTurn - 1);
+  const PlayersDetails = useSelector(
+    (val: gamestate) => val.About.PlayersDetails
+  );
+  const CurrentTurn = useSelector(
+    (val: gamestate) => val.About.CurrentTurn - 1
+  );
 
   useEffect(() => {
     SetPlayersArray([...PlayersDetails]);
@@ -30,7 +35,7 @@ const CurrentPlayer = () => {
   // console.log("CurrentTurn", CurrentTurn);
   const currentPlayer: IPlayersArray = PlayersArray?.[CurrentTurn];
   const position = SortedList.findIndex((val) => val == currentPlayer);
-  // console.log("PlayersArray?.[CurrentTurn]", PlayersArray?.[CurrentTurn].playerName);
+  // console.l:og("PlayersArray?.[CurrentTurn]", PlayersArray?.[CurrentTurn].playerName);
   return (
     <StyledWrapper>
       <CurrentCard

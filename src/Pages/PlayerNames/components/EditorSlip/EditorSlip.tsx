@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import Loader from "../../../../Tools/loader/Loader";
+import Loader from "../../../../Components/loader/Loader";
 import "./EditorSlip.css";
 import { isNameOfGirl } from "../../../../funcs & conts/checkfuncs";
-import { emojis } from "../../conts/conts";
+import { emojis } from "../../const/const";
 
 interface Player {
   playerName: string;

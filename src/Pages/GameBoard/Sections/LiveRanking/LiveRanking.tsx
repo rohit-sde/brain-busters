@@ -1,8 +1,8 @@
 import "./LiveRanking.css";
 import value from "../../Store/Store";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { SetScore } from "../../Store/AboutGame";
+import { useDispatch, useSelector } from "react-redux";
+import { gamestate, SetPlayerDetails, SetScore } from "../../Store/AboutGame";
 import Timer from "../smallcomponents/Timer/Timer";
 import { emojis } from "../../Pages/PlayerNames/conts/conts";
 import styled from "styled-components";
@@ -20,7 +20,17 @@ interface playersDetails {
 const LiveRanking = () => {
   const [playersDetail, setPlayersDetail] = useState<playersDetails[]>([]);
   const [WindowSize, setWindowSize] = useState(window.innerWidth);
-  const CurrentDetails = useSelector((val) => val.About.PlayersDetails);
+  const CurrentDetails = useSelector(
+    (val: gamestate) => val.About.PlayersDetails
+  );
+  const isResetGame = useSelector((val: gamestate) => val.Board.isResetGame);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const newDetails = playersDetail.map((val) => ({ ...val, Score: 0 }));
+    dispatch(SetPlayerDetails(newDetails));
+  }, [isResetGame]);
 
   useEffect(() => {
     setPlayersDetail([...CurrentDetails]);
