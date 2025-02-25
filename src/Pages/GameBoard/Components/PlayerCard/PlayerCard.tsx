@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { emojis } from "../../../PlayerNames/const/const";
 import { playerobject } from "../../../../Store/AboutGame";
+import Loader from "../../../../Components/loader/Loader";
 
 interface argue {
   WindowSize: number;
@@ -16,7 +17,6 @@ const PlayerCard = ({ WindowSize, sortedPlayers, position, player }: argue) => {
     if (position == 3) return "rd";
     return "th";
   }
-  console.log(player.character);
 
   return (
     <div className="playerCard">
@@ -24,17 +24,21 @@ const PlayerCard = ({ WindowSize, sortedPlayers, position, player }: argue) => {
         (sortedPlayers.length == 1
           ? "Solo"
           : `${position}${getRank(position)}`)}
-      <span
-        className={`playerImage num${
-          sortedPlayers.length == 1 ? "" : position
-        }`}
-      >
-        {emojis.includes(player.character) ? (
-          <span>{player.character}</span>
-        ) : (
-          <img src={`${player.character}`} />
-        )}
-      </span>
+      {player.character.length == 0 ? (
+        <Loader />
+      ) : (
+        <span
+          className={`playerImage num${
+            sortedPlayers.length == 1 ? "" : position
+          }`}
+        >
+          {emojis.includes(player.character) ? (
+            <span>{player.character}</span>
+          ) : (
+            <img src={`${player.character}`} />
+          )}
+        </span>
+      )}
       <NameWrapper>{WindowSize > 860 && player.playerName}</NameWrapper>
     </div>
   );

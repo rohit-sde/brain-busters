@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import "./CurrentCard.css";
+import Loader from "../../../../Components/loader/Loader";
 
 interface IPlayersDetails {
   id: number;
@@ -20,7 +21,11 @@ const CurrentCard = ({ CurrentPlayer, position }: Iprops) => {
   return (
     <StyledContainer>
       <ImageSpan>
-        <PlayerImage src={CurrentPlayer?.character} />
+        {CurrentPlayer?.character.length == 0 ? (
+          <Loader />
+        ) : (
+          <PlayerImage src={CurrentPlayer?.character} />
+        )}
       </ImageSpan>
       <WrapperDeatails>
         <NameSpan>{CurrentPlayer?.playerName}</NameSpan>
@@ -57,8 +62,10 @@ const ImageSpan = styled.span`
   // border: 1px solid var(--secondary-20);
   box-shadow: 0px 0px 8px 0.7px var(--secondary-20);
   height: 80px;
+  display: flex;
   text-align: center;
-  align-content: center;
+  justify-content: center;
+  align-items: center;
   aspect-ratio: 1/1;
   margin: auto;
   border-radius: 80px;
