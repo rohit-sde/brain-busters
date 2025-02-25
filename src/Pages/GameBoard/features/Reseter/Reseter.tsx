@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   gamestate,
+  SetCurrentTurn,
   SetIsPlayStart,
   SetIsResetGame,
   SetPlayerDetails,
@@ -11,13 +12,25 @@ import { useNavigate } from "react-router";
 
 const Reseter = () => {
   const isPlayStart = useSelector((v: gamestate) => v.Board.isPlayStart);
+  const players = useSelector((v: gamestate) => v.About.PlayersDetails);
 
-  console.log(isPlayStart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function buttonHandler(v: object) {
     const text = v.target.innerText;
-    if (text == "Reset") dispatch(SetIsResetGame());
+    if (text == "Reset") {
+      dispatch(
+        SetPlayerDetails(
+          players.map((val) => ({
+            ...val,
+            Score: 0,
+            time: { min: 5, sec: 30 },
+          }))
+        )
+      );
+      dispatch(SetCurrentTurn(true));
+      dispatch(SetIsResetGame());
+    }
     if (text == "Play") dispatch(SetIsPlayStart());
     if (text == "🏠") {
       dispatch(SetPlayerNum(0));
@@ -27,7 +40,11 @@ const Reseter = () => {
   }
   return (
     <WrapperDiv>
-      <StylButton onClick={buttonHandler} disabled={!isPlayStart}>
+      <StylButton
+        onClick={buttonHandler}
+        style={{ zIndex: isPlayStart ? 2 : 0 }}
+        disabled={!isPlayStart}
+      >
         Reset
       </StylButton>
       <StylButton onClick={buttonHandler} disabled={isPlayStart}>
@@ -54,8 +71,8 @@ const WrapperDiv = styled.div`
 
 const StylButton = styled.button`
   background-color: transparent;
-  border: none;
-  box-shadow: 0px 0px 0.5px 0.5px var(--secondary-20);
+  border: 0.2px solid var(--secondary-20);
+  box-shadow: 0px 1px 10px -2px var(--secondary-20);
   cursor: pointer;
   color: var(--text-color);
   border-radius: 8px;

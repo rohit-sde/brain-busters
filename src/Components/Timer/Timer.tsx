@@ -1,11 +1,7 @@
 import "./Timer.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  gamestate,
-  SetLeftTime,
-  SetPlayerDetails,
-} from "../../Store/AboutGame";
+import { gamestate, SetLeftTime } from "../../Store/AboutGame";
 
 const Timer = ({ Size = 801 }: { Size?: number }) => {
   const dispatch = useDispatch();
@@ -38,11 +34,9 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
     if (isRunning) {
       const interval = setInterval(() => {
         if (sec === 0) {
-          // If seconds reach 59, increment minute and reset seconds
           setMin((prevMin) => prevMin - 1);
           setSec(59);
         } else {
-          // Otherwise just increment seconds
           setSec((prevSec) => prevSec - 1);
         }
       }, 1000);
@@ -80,14 +74,6 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
       setIsRunning(false); // Start the timer
     }
   }, [currentPlayerId, currentPlayer?.time, isPlayStart, isResetGame]);
-
-  useEffect(() => {
-    if (!isResetGame) {
-      SetPlayerDetails(
-        players.map((val, i) => ({ ...val, time: { min: 5, sec: 30 } }))
-      );
-    }
-  }, [isResetGame]);
 
   function isClassAdd() {
     if (currentPlayer?.time.min === 0 && currentPlayer?.time.sec < 10)
