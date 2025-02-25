@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import "./EditorSlip.css";
 import { isNameOfGirl } from "../../../../funcs & conts/checkfuncs";
 import { playerobject } from "../../../../Store/AboutGame";
-import { emojis } from "../../const/const";
 
 interface argument {
   value: playerobject;
@@ -20,48 +19,7 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
     }
   }, [value.isInput]);
 
-  async function setImageFromUrl(Url: string) {
-    setPlayersinfo((prev: Player[]) =>
-      prev.map((player, k) =>
-        k === index ? { ...player, isLoading: true } : player
-      )
-    );
-
-    try {
-      const response = await fetch(Url);
-      if (!response.ok)
-        throw new Error(`Failed to fetch image: ${response.status}`);
-
-      const data = await response.blob();
-      const imageUrl = URL.createObjectURL(data);
-
-      setPlayersinfo((prev: playerobject[]) =>
-        prev.map((player, k) =>
-          k === index
-            ? { ...player, character: imageUrl, isLoading: false }
-            : player
-        )
-      );
-    } catch (error) {
-      const uniqueNo = Math.floor(Math.random() * emojis.length);
-      emojis.filter((_, i) => uniqueNo !== i);
-      setPlayersinfo((prev: playerobject[]) =>
-        prev.map((player, k) =>
-          k === index
-            ? {
-                ...player,
-                character: emojis[uniqueNo],
-                isLoading: false,
-              }
-            : player
-        )
-      );
-      console.error("Error fetching image:", error);
-    }
-  }
-
   function handleEditBtn() {
-    console.log("hello");
     const currentvalue = inputRef.current?.value;
 
     if (currentvalue) {
@@ -80,7 +38,7 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
           isInput: !value.isInput,
         };
         if (currentvalue !== value.playerName) {
-          setImageFromUrl(imageUrl); // fetch image based on new gender
+          // setImageFromUrl(imageUrl); // fetch image based on new gender
         }
         return prev.map((player, k) =>
           k === index ? { ...updatedPlayer } : player
@@ -105,31 +63,15 @@ const EditorSlip = ({ value, setPlayersinfo, index }: argument) => {
           const URL = `https://avatar.iran.liara.run/public/${
             gen === "M" ? "boy" : "girl"
           }?username=${updatedPlayer.playerName}`;
-          setImageFromUrl(URL);
+          // setImageFromUrl(URL);
           return updatedPlayer;
         }
         return player;
       });
     });
   }
-  useEffect(() => {
-    setImageFromUrl(
-      `https://avatar.iran.liara.run/public/${
-        value.gender == "M" ? "boy" : "girl"
-      }`
-    );
-  }, []);
   return (
     <div className="editorSlip">
-      {/* <span className="emojiFace">
-        {value.isLoading ? (
-          <Loader />
-        ) : emojis.includes(value.character) ? (
-          <span>{value.character}</span>
-        ) : (
-          <img src={`${value.character}`} />
-        )}
-      </span> */}
       {value?.isInput ? (
         <input
           className="nameInput"

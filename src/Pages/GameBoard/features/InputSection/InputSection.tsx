@@ -29,12 +29,10 @@ const InputSection = () => {
     }
 
     if (type == "grid") {
-      console.log("grid");
       dispatch(SetCards(value));
     } else if (type == "min") {
       setTime((prev) => prev.map((val) => ({ ...val, min: value })));
     } else if (type == "sec") {
-      console.log("sec");
       setTime((prev) => prev.map((val) => ({ ...val, sec: value })));
     }
   }
@@ -42,14 +40,17 @@ const InputSection = () => {
   // console.log("sec", time[0].sec);
 
   function handleSetButton() {
-    console.log("hello");
     SetPlayersArray((prev) =>
       prev.map((val, i) => ({ ...val, time: time[i] }))
     );
   }
 
   useEffect(() => {
-    dispatch(SetPlayerDetails(playersArray));
+    dispatch(
+      SetPlayerDetails(
+        playersDetails.map((val, i) => ({ ...val, time: playersArray[i].time }))
+      )
+    );
   }, [playersArray]);
   return (
     <div className="InputSectionWrapper">

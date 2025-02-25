@@ -6,6 +6,7 @@ export interface gamestate {
   About: AboutPlayersState;
   Board: BoardSettingsState;
   Cards: CardsDataState;
+  products: PlayersScoreState;
   Theme: ITheme;
 }
 
@@ -45,7 +46,6 @@ export interface playerobject {
   id: number;
   time: { min: number; sec: number };
   isInput: boolean;
-  isLoading: boolean;
   playerName: string;
 }
 
@@ -71,7 +71,6 @@ const About_Players = createSlice({
             Score: 0,
             time: { min: 5, sec: 30 },
             isInput: false,
-            isLoading: true,
           });
         });
     },
@@ -85,6 +84,7 @@ const About_Players = createSlice({
       });
     },
     SetPlayerDetails(state, action) {
+      console.log("store", action.payload);
       state.PlayersDetails = action.payload;
     },
     updatePlayerDetails(state, action) {
@@ -92,14 +92,17 @@ const About_Players = createSlice({
         action.payload.editedValue;
     },
     SetLeftTime(state, action) {
-      console.log(action);
       const payload = action.payload;
       const playertime = state.PlayersDetails.findIndex(
         (player) => player.id == payload?.currentPlayerId
       );
       state.PlayersDetails[playertime].time = payload?.Time;
     },
-    SetCurrentTurn(state) {
+    SetCurrentTurn(state, action) {
+      if (action.payload) {
+        state.CurrentTurn = 1;
+        return;
+      }
       if (state.NoOfPlayers === state.CurrentTurn) {
         state.CurrentTurn = 1;
         return;
@@ -129,11 +132,12 @@ const Board_Settings = createSlice({
       state.Cards.TypeOfCards = action.payload;
     },
     SetIsPlayStart(state) {
-      state.isPlayStart = !state.isPlayStart;
+      state.isPlayStart = true;
+      state.isResetGame = false;
     },
     SetIsResetGame(state) {
       if (state.isPlayStart) {
-        state.isResetGame = !state.isResetGame;
+        state.isResetGame = true;
         state.isPlayStart = false;
       }
     },
