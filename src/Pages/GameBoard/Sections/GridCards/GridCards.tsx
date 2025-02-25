@@ -78,7 +78,7 @@ const GridCards = () => {
         setFlipped((prev) => [...prev, id]);
         setTimeout(() => {
           setFlipped([]);
-          dispatch(SetCurrentTurn());
+          dispatch(SetCurrentTurn(false));
         }, 400);
       }
     },
@@ -113,8 +113,10 @@ const GridCards = () => {
             }`}
             // aria-disabled={isPlayStart}
             onClick={() => {
-              if (isFlipped[0] !== id || !isMatched.find(id))
-                handleFlippedCards(id);
+              if (isPlayStart) {
+                if (isFlipped[0] !== id || !isMatched.find(id))
+                  handleFlippedCards(id);
+              }
             }}
           >
             {checkisFlipped(id) || checkisMacthed(id) ? val.value : "?"}
