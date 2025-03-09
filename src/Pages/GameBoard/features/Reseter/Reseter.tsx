@@ -35,6 +35,7 @@ const Reseter = () => {
     if (text == "🏠") {
       dispatch(SetPlayerNum(0));
       dispatch(SetPlayerDetails([]));
+      dispatch(SetCurrentTurn(1));
       navigate("/");
     }
   }

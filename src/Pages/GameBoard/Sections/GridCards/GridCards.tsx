@@ -90,6 +90,16 @@ const GridCards = () => {
     setIsMatched([]);
   }, [isResetGame]);
 
+  // if (cardsArray.length > 1) {
+  //   if (isMatched.length === cardsArray.length) {
+  //     console.log(
+  //       "isMatched.length === cardsArray.length",
+  //       isMatched.length === cardsArray.length
+  //     );
+  //     dispatch(SetWinner(true));
+  //   }
+  // }
+
   return (
     <div
       className="CardsGrid"
@@ -111,7 +121,6 @@ const GridCards = () => {
                 ? "macthed"
                 : ""
             }`}
-            // aria-disabled={isPlayStart}
             onClick={() => {
               if (isPlayStart) {
                 if (isFlipped[0] !== id || !isMatched.find(id))

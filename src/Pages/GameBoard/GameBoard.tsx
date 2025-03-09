@@ -1,8 +1,4 @@
-import {
-  gamestate,
-  SetLeaderBoard,
-  SetPlayerDetails,
-} from "../../Store/AboutGame.ts";
+import { gamestate, SetPlayerDetails } from "../../Store/AboutGame.ts";
 import { useDispatch, useSelector } from "react-redux";
 import "./GameBoard.css";
 import { useNavigate } from "react-router";
@@ -20,7 +16,6 @@ const GameBoard = () => {
   const playersDetail = useSelector(
     (val: gamestate) => val.About.PlayersDetails
   );
-  const leaderBoard = useSelector((val: gamestate) => val.products.LeaderBoard);
   const isPlayStart = useSelector((val: gamestate) => val.Board.isPlayStart);
 
   useEffect(() => {
@@ -32,7 +27,7 @@ const GameBoard = () => {
   useEffect(() => {
     const fetchPlayerImages = async () => {
       const updatedPlayer = await Promise.all(
-        playersDetail.map(async (player, i) => {
+        playersDetail.map(async (player) => {
           const image = await fetchr(player);
           return { ...player, character: image };
         })
@@ -41,16 +36,6 @@ const GameBoard = () => {
     };
     fetchPlayerImages();
   }, []);
-
-  if (playersDetail.length !== leaderBoard.length) {
-    for (let i = 0; i < playersDetail.length; i++) {
-      const player = {
-        PlayerName: playersDetail[i].playerName,
-        Score: Number("0"),
-      };
-      dispatch(SetLeaderBoard(player));
-    }
-  }
 
   return (
     <>

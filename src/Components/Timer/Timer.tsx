@@ -33,6 +33,9 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
   useEffect(() => {
     if (isRunning) {
       const interval = setInterval(() => {
+        if (min == 0 && sec == 1) {
+          setIsRunning(false);
+        }
         if (sec === 0) {
           setMin((prevMin) => prevMin - 1);
           setSec(59);
@@ -76,12 +79,13 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
   }, [currentPlayerId, currentPlayer?.time, isPlayStart, isResetGame]);
 
   function isClassAdd() {
-    if (currentPlayer?.time.min === 0 && currentPlayer?.time.sec < 10)
-      if (currentPlayer.time.sec < 3) {
+    if (min === 0 && sec < 10) {
+      if (sec < 1) {
         return "shake";
       } else {
         return "near-timeup";
       }
+    }
   }
 
   return (
