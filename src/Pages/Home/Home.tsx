@@ -12,6 +12,7 @@ import { SetPlayerNum } from "../../Store/AboutGame.ts";
 // Components
 import NumOfPlayers from "./components/buttons/NumOfPlayers.tsx";
 import NextButton from "../../Components/NextButton/NextButton.tsx";
+import { toast, ToastContainer } from "react-toastify";
 
 const Home = () => {
   const [playerCount, SetPlayerCount] = useState<number>(0);
@@ -28,6 +29,10 @@ const Home = () => {
   }, []);
 
   function NextButtonHandler() {
+    if (playerCount == 0) {
+      hello();
+      return;
+    }
     dispatch(SetPlayerNum(playerCount));
     navigate("/PlayerNameing");
   }
@@ -35,8 +40,13 @@ const Home = () => {
   function handlestate(val: number) {
     SetPlayerCount(val);
   }
+
+  function hello() {
+    toast.error("Select Number of Players");
+  }
   return (
     <div className="HomeContainer">
+      <ToastContainer />
       <span className="Title">Brain Buster</span>
       <div className="MultiPlayerSec">
         {Array(4)
