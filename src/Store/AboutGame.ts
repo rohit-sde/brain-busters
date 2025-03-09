@@ -6,7 +6,7 @@ export interface gamestate {
   About: AboutPlayersState;
   Board: BoardSettingsState;
   Cards: CardsDataState;
-  products: PlayersScoreState;
+  Winner: WinnerPlayer;
   Theme: ITheme;
 }
 
@@ -29,8 +29,9 @@ interface BoardSettingsState {
   isResetGame: boolean;
 }
 
-interface PlayersScoreState {
-  LeaderBoard: object[]; // Adjust the type of LeaderBoard if needed
+interface WinnerPlayer {
+  Winner: boolean;
+  WinnerPlayer: { WinnerName: ""; WinnerPic: "" };
 }
 
 interface CardsDataState {
@@ -100,7 +101,7 @@ const About_Players = createSlice({
     },
     SetCurrentTurn(state, action) {
       if (action.payload) {
-        state.CurrentTurn = 1;
+        state.CurrentTurn = action.payload;
         return;
       }
       if (state.NoOfPlayers === state.CurrentTurn) {
@@ -145,14 +146,21 @@ const Board_Settings = createSlice({
 });
 
 // Players_Score Slice
-const Players_Score = createSlice({
-  name: "Players_Score",
+const Winner_Player = createSlice({
+  name: "Winner_Player",
   initialState: {
-    LeaderBoard: [],
-  } as PlayersScoreState,
+    Winner: false,
+    WinnerPlayer: {
+      WinnerName: "",
+      WinnerPic: "",
+    },
+  } as WinnerPlayer,
   reducers: {
-    SetLeaderBoard(state, action) {
-      state.LeaderBoard.push(action.payload);
+    SetWinner(state, action) {
+      state.Winner = action.payload;
+    },
+    SetWinnerDetail(state, action) {
+      state.WinnerPlayer = action.payload;
     },
   },
 });
@@ -201,7 +209,7 @@ export const {
 } = About_Players.actions;
 export const { SetIsPlayStart, SetIsResetGame, SetCards } =
   Board_Settings.actions;
-export const { SetLeaderBoard } = Players_Score.actions;
+export const { SetWinner, SetWinnerDetail } = Winner_Player.actions;
 export const { SetIsFlipped, SetIsSolved } = Cards_Data.actions;
 export const { SetTheme } = App_Theme.actions;
 
@@ -209,7 +217,7 @@ export const { SetTheme } = App_Theme.actions;
 export default {
   About: About_Players.reducer,
   Board: Board_Settings.reducer,
-  products: Players_Score.reducer,
+  Winner: Winner_Player.reducer,
   Cards: Cards_Data.reducer,
   Theme: App_Theme.reducer,
 };
