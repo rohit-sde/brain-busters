@@ -19,7 +19,7 @@
 
 /* Shaking animation when time is near end */
 .shake {
-  animation: shake 0.3s infinite ease-in-out;
+  animation: shake 0.3s 2 ease-in-out;
 }
 
 /* Keyframe for blinking effect */

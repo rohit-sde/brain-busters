@@ -3,7 +3,7 @@ import "./NextButton.css";
 interface arguments {
   value: string;
   buttonHandler: () => void;
-  isactive: boolean;
+  isactive?: boolean;
 }
 
 const NextButton = ({ value, buttonHandler, isactive }: arguments) => {
