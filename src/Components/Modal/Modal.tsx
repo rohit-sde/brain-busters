@@ -1,7 +1,37 @@
+import { useDispatch, useSelector } from "react-redux";
 import { getWinnerMsg } from "../../funcs & conts/getWinnerMsg";
+
 import "./Modal.css";
+import {
+  gamestate,
+  SetCurrentTurn,
+  SetIsResetGame,
+  SetPlayerDetails,
+  SetPlayerNum,
+  SetWinner,
+  SetWinnerDetail,
+} from "../../Store/AboutGame";
+import { useNavigate } from "react-router";
 
 const Modal = ({ WinnerName = "", WinnerPic = "" }) => {
+  const players = useSelector((val: gamestate) => val.About.PlayersDetails);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function resetGame() {
+    dispatch(
+      SetPlayerDetails(
+        players.map((val) => ({
+          ...val,
+          Score: 0,
+          time: { min: 5, sec: 30 },
+        }))
+      )
+    );
+    dispatch(SetCurrentTurn(1));
+    dispatch(SetIsResetGame());
+    dispatch(SetWinner(false));
+  }
   return (
     <div className="Backdrop">
       <div className="Pop">
@@ -16,8 +46,23 @@ const Modal = ({ WinnerName = "", WinnerPic = "" }) => {
           </span>
         </div>
         <div className="Footer">
-          <button className="Exitbtn">Exit</button>
-          <button className="Playbtn">Play Again</button>
+          <button
+            className="Exitbtn"
+            onClick={() => {
+              dispatch(SetPlayerNum(0));
+              dispatch(SetPlayerDetails([]));
+              dispatch(SetCurrentTurn(1));
+              dispatch(SetWinner(false));
+              dispatch(SetWinnerDetail({}));
+              dispatch(SetIsResetGame());
+              navigate("/");
+            }}
+          >
+            Exit
+          </button>
+          <button className="Playbtn" onClick={resetGame}>
+            Play Again
+          </button>
         </div>
       </div>
     </div>
