@@ -39,7 +39,7 @@
 }
 
 .Image {
-  display: inline-block;
+  display: flex;
   width: 30%;
   min-width: 240px;
   aspect-ratio: 1/1;
@@ -49,9 +49,9 @@
 }
 
 .Pic {
-  object-fit: cover;
-  height: 100%;
+  object-fit: contain;
   width: 100%;
+  aspect-ratio: 1/1;
 }
 
 .WinnerBoard {
