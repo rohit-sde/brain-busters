@@ -7,6 +7,7 @@ import {
   gamestate,
   SetCurrentTurn,
   SetScore,
+  SetWinner,
 } from "../../../../Store/AboutGame";
 
 interface grid {
@@ -90,15 +91,17 @@ const GridCards = () => {
     setIsMatched([]);
   }, [isResetGame]);
 
-  // if (cardsArray.length > 1) {
-  //   if (isMatched.length === cardsArray.length) {
-  //     console.log(
-  //       "isMatched.length === cardsArray.length",
-  //       isMatched.length === cardsArray.length
-  //     );
-  //     dispatch(SetWinner(true));
-  //   }
-  // }
+  useEffect(() => {
+    if (cardsArray.length > 1) {
+      if (isMatched.length === cardsArray.length) {
+        console.log(
+          "isMatched.length === cardsArray.length",
+          isMatched.length === cardsArray.length
+        );
+        dispatch(SetWinner(true));
+      }
+    }
+  }, [isMatched]);
 
   return (
     <div

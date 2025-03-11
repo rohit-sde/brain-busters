@@ -28,7 +28,7 @@ const Reseter = () => {
           }))
         )
       );
-      dispatch(SetCurrentTurn(true));
+      dispatch(SetCurrentTurn(1));
       dispatch(SetIsResetGame());
     }
     if (text == "Play") dispatch(SetIsPlayStart());
