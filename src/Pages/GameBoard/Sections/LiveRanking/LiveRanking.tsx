@@ -2,7 +2,11 @@ import "./LiveRanking.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../../Components/PlayerCard/PlayerCard";
-import { gamestate, playerobject } from "../../../../Store/AboutGame";
+import {
+  gamestate,
+  playerobject,
+  SetWinnerDetail,
+} from "../../../../Store/AboutGame";
 
 const LiveRanking = () => {
   const [playersDetail, setPlayersDetail] = useState<playerobject[]>([]);
@@ -11,6 +15,7 @@ const LiveRanking = () => {
   const CurrentDetails = useSelector(
     (val: gamestate) => val.About.PlayersDetails
   );
+  const isWin = useSelector((value: gamestate) => value.Winner.Winner);
 
   useEffect(() => {
     setPlayersDetail([...CurrentDetails]);
@@ -29,16 +34,19 @@ const LiveRanking = () => {
 
   const sortedPlayers = playersDetail?.sort((a, b) => b.Score - a.Score);
 
-  // if (isWin) {
-  //   const Winner = sortedPlayers[0];
-  //   console.log(Winner);
-  //   dispatch(
-  //     SetWinnerDetail({
-  //       WinnerName: Winner?.playerName,
-  //       WinnerPic: Winner?.character,
-  //     })
-  //   );
-  // }
+  useEffect(() => {
+    if (isWin) {
+      const Winner = sortedPlayers[0];
+      console.log(Winner);
+      dispatch(
+        SetWinnerDetail({
+          WinnerName: Winner?.playerName,
+          WinnerPic: Winner?.character,
+        })
+      );
+    }
+  }, [isWin]);
+
   return (
     <div
       className="container"

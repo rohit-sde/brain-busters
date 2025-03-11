@@ -85,7 +85,6 @@ const About_Players = createSlice({
       });
     },
     SetPlayerDetails(state, action) {
-      console.log("store", action.payload);
       state.PlayersDetails = action.payload;
     },
     updatePlayerDetails(state, action) {
@@ -97,7 +96,10 @@ const About_Players = createSlice({
       const playertime = state.PlayersDetails.findIndex(
         (player) => player.id == payload?.currentPlayerId
       );
-      state.PlayersDetails[playertime].time = payload?.Time;
+      if (playertime >= 0) {
+        state.PlayersDetails[playertime].time = payload?.Time;
+      }
+      // state.PlayersDetails[playertime].time = payload?.Time;
     },
     SetCurrentTurn(state, action) {
       if (action.payload) {
