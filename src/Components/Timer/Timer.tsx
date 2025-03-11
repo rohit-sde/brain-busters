@@ -18,10 +18,6 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
   );
   const isWin = useSelector((state: gamestate) => state.Winner.Winner);
 
-  console.log("players", players);
-  console.log("currentPlayerId", currentPlayerId);
-  console.log("isPlayStart", isPlayStart);
-  console.log("isResetGame", isResetGame);
   // console.log("render..", Math.floor(Math.random() * 100));
   const currentPlayer = players?.find(
     (player) => player.id === currentPlayerId
@@ -31,8 +27,6 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
   const [min, setMin] = useState<number>(currentPlayer?.time?.min); // Minutes for the current player
   const [sec, setSec] = useState<number>(currentPlayer?.time?.sec); // Seconds for the current player
   const [isRunning, setIsRunning] = useState(false);
-
-  // console.log(isPlayStart);
 
   useEffect(() => {
     if (isWin) setIsRunning(false);

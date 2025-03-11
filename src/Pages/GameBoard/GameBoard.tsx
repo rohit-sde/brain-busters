@@ -9,6 +9,7 @@ import LiveRanking from "./Sections/LiveRanking/LiveRanking.tsx";
 import GridCards from "./Sections/GridCards/GridCards.tsx";
 import { fetchr } from "../../funcs & conts/fetcher.ts";
 import Backdrop from "../../Components/Backdrop/Backdrop.tsx";
+import Modal from "../../Components/Modal/Modal.tsx";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const GameBoard = () => {
     (val: gamestate) => val.About.PlayersDetails
   );
   const isPlayStart = useSelector((val: gamestate) => val.Board.isPlayStart);
+  const winnerDetails = useSelector((val: gamestate) => val.Winner);
 
   useEffect(() => {
     if (playersDetail.length === 0) {
@@ -40,6 +42,12 @@ const GameBoard = () => {
   return (
     <>
       {!isPlayStart && <Backdrop />}
+      {winnerDetails.Winner && (
+        <Modal
+          WinnerName={winnerDetails.WinnerPlayer.WinnerName}
+          WinnerPic={winnerDetails.WinnerPlayer.WinnerPic}
+        />
+      )}
       <div className="GameBoard">
         {/* <LeaderBoard /> */}
         <CurrentPlayer />
