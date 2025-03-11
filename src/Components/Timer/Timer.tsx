@@ -1,7 +1,7 @@
 import "./Timer.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { gamestate, SetLeftTime } from "../../Store/AboutGame";
+import { gamestate, SetLeftTime, SetWinner } from "../../Store/AboutGame";
 
 const Timer = ({ Size = 801 }: { Size?: number }) => {
   const dispatch = useDispatch();
@@ -16,7 +16,12 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
   const isResetGame = useSelector(
     (state: gamestate) => state.Board.isResetGame
   );
+  const isWin = useSelector((state: gamestate) => state.Winner.Winner);
 
+  console.log("players", players);
+  console.log("currentPlayerId", currentPlayerId);
+  console.log("isPlayStart", isPlayStart);
+  console.log("isResetGame", isResetGame);
   // console.log("render..", Math.floor(Math.random() * 100));
   const currentPlayer = players?.find(
     (player) => player.id === currentPlayerId
@@ -29,12 +34,17 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
 
   // console.log(isPlayStart);
 
+  useEffect(() => {
+    if (isWin) setIsRunning(false);
+  }, [isWin]);
+
   // Start the timer when the turn starts
   useEffect(() => {
     if (isRunning) {
       const interval = setInterval(() => {
         if (min == 0 && sec == 1) {
           setIsRunning(false);
+          dispatch(SetWinner(true));
         }
         if (sec === 0) {
           setMin((prevMin) => prevMin - 1);
