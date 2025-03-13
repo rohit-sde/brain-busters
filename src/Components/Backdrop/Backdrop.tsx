@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
-const Backdrop = () => {
-  return <Backdroper></Backdroper>;
+const Backdrop = ({ children }) => {
+  return <Backdroper>{children}</Backdroper>;
 };
 
 export default Backdrop;
 
 const Backdroper = styled.div`
-  opacity: 0.6;
+  opacity: 0.9;
   display: inline-block;
+  align-content: center;
+  justify-items: center;
   height: 100%;
   width: 100%;
   background-color: #00000061;

@@ -11,3 +11,44 @@
   display: flex;
   justify-content: space-between;
 }
+
+.instructions-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 60%;
+  width: 40%;
+  min-width: 350px;
+  max-width: 660px;
+  /* background-color: var(--secondary-20); */
+  padding: 20px;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  margin-bottom: 30px;
+}
+
+.instructions-box h2 {
+  mix-blend-mode: hard-light;
+  font-size: 2.8rem;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.instructions-box .subheading {
+  mix-blend-mode: hard-light;
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.instructions-list {
+  mix-blend-mode: hard-light;
+  text-align: left;
+  font-size: 1.3rem;
+  color: var(--text-color);
+}
+
+.instructions-list li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}

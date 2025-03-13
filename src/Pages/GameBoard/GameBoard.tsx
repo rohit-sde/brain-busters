@@ -41,7 +41,26 @@ const GameBoard = () => {
 
   return (
     <>
-      {!isPlayStart && <Backdrop />}
+      {!isPlayStart && (
+        <Backdrop>
+          <div className="instructions-box">
+            {/* <div className="instructions-box"> */}
+            <h2>Customize Your Game</h2>
+            <p className="subheading">
+              Follow these steps to set up your game!
+            </p>
+            <ul className="instructions-list">
+              <li>Select Your Card Type</li>
+              <li>Choose Your Grid Size</li>
+              <li>Set Your Time Limit</li>
+              <li>Click "Set Game" to Apply Your Time Settings</li>
+              <li>Use "Reset Game" to Start Over</li>
+              <li>Click "Play Game" to Begin!</li>
+            </ul>
+            {/* </div> */}
+          </div>
+        </Backdrop>
+      )}
       {winnerDetails.Winner && (
         <Modal
           WinnerName={winnerDetails.WinnerPlayer.WinnerName}
