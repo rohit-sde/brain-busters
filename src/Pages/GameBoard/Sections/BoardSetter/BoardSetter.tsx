@@ -19,6 +19,8 @@ const BoardSetter = () => {
     overflow: "hidden",
     position: "relative",
     zIndex: 3,
+    border: "1px solid var(--primary-30)",
+    boxShadow: "0px -1px 5px 0.5px var(--primary-30)",
   };
   return (
     <div style={styles}>
