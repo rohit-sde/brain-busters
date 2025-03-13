@@ -11,7 +11,6 @@ const NextButton = ({ value, buttonHandler, isactive }: arguments) => {
     <button
       className={`NextButton${isactive ? "active" : ""}`}
       onClick={buttonHandler}
-      disabled={!isactive}
     >
       {value}
     </button>

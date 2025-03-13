@@ -4,14 +4,14 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import PlayerNames from "./Pages/PlayerNames/PlayerNames.tsx";
 import GameBoard from "./Pages/GameBoard/GameBoard.tsx";
 import Themer from "./Theme/ThemeProvider/Themer.tsx";
-// import CustomTheme from "./Theme/customThemer/CustomTheme.tsx";
+import CustomTheme from "./Theme/customThemer/CustomTheme.tsx";
 
 function App() {
   return (
     <>
       <span className="themesWrapper">
         <Themer />
-        {/* <CustomTheme /> */}
+        <CustomTheme />
       </span>
       <div className="wrapper">
         <BrowserRouter>

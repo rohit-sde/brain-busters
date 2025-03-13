@@ -1,7 +1,7 @@
 .noOfPlayers {
   font-family: "Atma", system-ui;
   font-weight: 500;
-  border: 1px solid rgb(126, 125, 125);
+  border: 1px solid var(--primary-30);
   margin: 0.8rem;
   border-radius: 5px;
   cursor: pointer;
@@ -13,12 +13,12 @@
 }
 
 .noOfPlayers:hover {
-  box-shadow: 0px 0px 5px var(--text-color);
+  box-shadow: 0px 0px 5px var(--primary-30);
   transform: scale(1.07);
 }
 
 .active {
-  box-shadow: 0px 0px 5px var(--text-color);
+  box-shadow: 0px 0px 5px var(--primary-30);
   transform: scale(1.07);
 }
 
