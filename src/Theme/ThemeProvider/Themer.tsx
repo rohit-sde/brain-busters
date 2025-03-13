@@ -16,7 +16,7 @@ const Themer = () => {
   useEffect(() => {
     document
       .getElementById("root")
-      ?.setAttribute("data-theme", `${checked ? "dark" : "light"}`);
+      ?.setAttribute("data-theme", `${checked ? "deepocean" : "earthytones"}`);
     dispatch(SetTheme(checked ? "dark" : "light"));
     return () => document.getElementById("root")?.removeAttribute("data-theme");
   }, [checked]);
