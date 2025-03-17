@@ -93,14 +93,21 @@ Memory Match is a fun and interactive card game where players must match pairs o
    - Select the number of players.
    - Choose the **theme** (Light/Dark) via a toggle button.
    - **Change Theme Colors** by selecting from five preset options.
+
+![Homepage Screenshot](homepage_screenshot.png)
+
 2. **Player Information Page**: After selecting the theme and colors, each player will set up their profile:
 
    - Choose your **gender** (Male/Female/Other/Custom).
    - Set your **name** for the game.
 
+![Player Information Screenshot](player_info_screenshot.png)
+
 3. **Gameboard**: Once all players have been set up, proceed to the game board where:
    - You can adjust settings such as the **difficulty** (number of cards and matching pairs).
    - Hit **Play** to begin the game.
+
+![Gameboard Screenshot](gameboard_screenshot.png)
 
 ---
 
