@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: column;
   background-color: #8a8a6070;
+  user-select: none;
   height: 55%;
   width: 55%;
 }
@@ -43,7 +44,7 @@
   width: 30%;
   min-width: 240px;
   aspect-ratio: 1/1;
-  margin-left: 25px;
+  margin: 0px 25px;
   border-radius: 30px;
   overflow: hidden;
 }
@@ -57,7 +58,7 @@
 .WinnerBoard {
   /* background-color: #84673d; */
   text-align: center;
-  padding: 25px 5px;
+  padding: 25px 4px;
   flex: 1;
 }
 
