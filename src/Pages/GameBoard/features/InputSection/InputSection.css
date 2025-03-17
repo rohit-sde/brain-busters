@@ -19,6 +19,12 @@
   justify-content: space-evenly;
 }
 
+.subHeading {
+  font-size: 15px;
+  margin: 13px 0px 0px 0px;
+  text-align: center;
+}
+
 .minSecGridInput {
   background-color: transparent;
   border-radius: 0.5px;

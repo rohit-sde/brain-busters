@@ -67,6 +67,7 @@ const InputSection = () => {
           min={2}
         />
       </span>
+      <h4 className="subHeading">Fair Time Allocation</h4>
       <span className="SetTime">
         <span>
           <label htmlFor="minutes">Min :</label>
