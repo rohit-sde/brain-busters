@@ -37,7 +37,7 @@ const LiveRanking = () => {
   useEffect(() => {
     if (isWin) {
       const Winner = sortedPlayers[0];
-      console.log(Winner);
+      // console.log(Winner);
       dispatch(
         SetWinnerDetail({
           WinnerName: Winner?.playerName,
