@@ -32,7 +32,7 @@ const CustomTheme = () => {
         className={`arrow ${isExpanded ? "isExpanded" : ""}`}
         onClick={() => setIsExpanded((p) => !p)}
       >
-        {"<"}
+        ⮜
       </button>
       {colors.colors.map((colors, i) => (
         <Circle

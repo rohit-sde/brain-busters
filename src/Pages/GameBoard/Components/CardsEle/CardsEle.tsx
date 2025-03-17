@@ -7,7 +7,7 @@ const CardsEle = () => {
   const isPlayStart = useSelector((val: gamestate) => val.Board.isPlayStart);
 
   const [cardType, setCardsType] = useState("ABC");
-  const typeOfCards = useSelector((v) => v.Board.Cards.TypeOfCards);
+  const typeOfCards = useSelector((v: gamestate) => v.Board.Cards.TypeOfCards);
   const dispatch = useDispatch();
   useEffect(() => {
     setCardsType(typeOfCards);

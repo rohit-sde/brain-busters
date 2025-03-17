@@ -35,7 +35,9 @@ const Modal = ({ WinnerName = "", WinnerPic = "" }) => {
   return (
     <div className="Backdrop">
       <div className="Pop">
-        <div className="Header">✘</div>
+        <div className="Header" onClick={resetGame}>
+          ✘
+        </div>
         <div className="Main">
           <span className="Image">
             <img className="Pic" src={WinnerPic} alt="Winner Pic" />

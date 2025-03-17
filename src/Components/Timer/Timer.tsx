@@ -74,7 +74,7 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
     if (currentPlayerId !== null) {
       setMin(currentPlayer?.time.min); // Set the minutes to the current player's stored minutes
       setSec(currentPlayer?.time.sec); // Set the seconds to the current player's stored seconds
-      if (isPlayStart) {
+      if (isPlayStart && !isWin) {
         setIsRunning(true); // Start the timer
         return;
       }
