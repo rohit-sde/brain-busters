@@ -48,6 +48,7 @@ const Home = () => {
     <div className="HomeContainer">
       <ToastContainer />
       <span className="Title">Brain Buster</span>
+      <h4 className="subTitle">Select Number Of Players</h4>
       <div className="MultiPlayerSec">
         {Array(4)
           .fill(null)

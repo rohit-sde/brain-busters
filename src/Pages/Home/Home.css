@@ -32,6 +32,13 @@
   text-align: center;
 }
 
+.subTitle {
+  margin: 3px 0px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+}
+
 /* No of Player selection container rapper for multi player */
 .MultiPlayerSec {
   display: grid;
