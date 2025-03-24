@@ -1,30 +1,4 @@
-interface girlsName {
-  a: Set<string>;
-  b: Set<string>;
-  c: Set<string>;
-  d: Set<string>;
-  g: Set<string>;
-  i: Set<string>;
-  j: Set<string>;
-  k: Set<string>;
-  l: Set<string>;
-  m: Set<string>;
-  n: Set<string>;
-  o: Set<string>;
-  p: Set<string>;
-  q: Set<string>;
-  r: Set<string>;
-  s: Set<string>;
-  t: Set<string>;
-  u: Set<string>;
-  v: Set<string>;
-  w: Set<string>;
-  x: Set<string>;
-  y: Set<string>;
-  z: Set<string>;
-}
-
-export const indianGirlsNamesByLetter: girlsName = {
+export const indianGirlsNamesByLetter = {
   a: new Set([
     "aadhya",
     "ayesha",
@@ -998,7 +972,7 @@ export const indianGirlsNamesByLetter: girlsName = {
     "zaara",
     "zaheen",
   ]),
-};
+} as { [key: string]: Set<string> };
 
 export const ABC: { id: number; value: string }[] = [
   { id: 0, value: "A" },

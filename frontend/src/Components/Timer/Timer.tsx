@@ -24,8 +24,8 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
   );
 
   const [currentId, setCurrentId] = useState<number>(currentPlayerId);
-  const [min, setMin] = useState<number>(currentPlayer?.time?.min); // Minutes for the current player
-  const [sec, setSec] = useState<number>(currentPlayer?.time?.sec); // Seconds for the current player
+  const [min, setMin] = useState<number>(currentPlayer?.time?.min ?? 0); // Minutes for the current player
+  const [sec, setSec] = useState<number>(currentPlayer?.time?.sec ?? 0); // Seconds for the current player
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
@@ -72,8 +72,8 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
   // Start the timer when the turn changes to the current player
   useEffect(() => {
     if (currentPlayerId !== null) {
-      setMin(currentPlayer?.time.min); // Set the minutes to the current player's stored minutes
-      setSec(currentPlayer?.time.sec); // Set the seconds to the current player's stored seconds
+      setMin(currentPlayer?.time.min ?? 0); // Set the minutes to the current player's stored minutes
+      setSec(currentPlayer?.time.sec ?? 0); // Set the seconds to the current player's stored seconds
       if (isPlayStart && !isWin) {
         setIsRunning(true); // Start the timer
         return;

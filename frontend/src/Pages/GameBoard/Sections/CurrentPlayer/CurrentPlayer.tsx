@@ -18,9 +18,13 @@ interface IPlayersArray {
 
 const CurrentPlayer = () => {
   const [PlayersArray, SetPlayersArray] = useState<IPlayersArray[]>([]);
-  const PlayersDetails = useSelector(
+  const PlayersDetail = useSelector(
     (val: gamestate) => val.About.PlayersDetails
   );
+  const PlayersDetails = PlayersDetail.map((plyr) => ({
+    ...plyr,
+    isLoading: false,
+  }));
   const CurrentTurn = useSelector(
     (val: gamestate) => val.About.CurrentTurn - 1
   );

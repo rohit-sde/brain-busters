@@ -8,7 +8,7 @@ import Backdrop from "../../../../Components/Backdrop/Backdrop";
 const BoardSetter = () => {
   const isPlayStart = useSelector((v: gamestate) => v.Board.isPlayStart);
 
-  const styles = {
+  const styles: React.CSSProperties = {
     width: "20%",
     height: "100%",
     display: "flex",
@@ -24,7 +24,7 @@ const BoardSetter = () => {
   };
   return (
     <div style={styles}>
-      {isPlayStart && <Backdrop />}
+      {isPlayStart && <Backdrop>{""}</Backdrop>}
       <CardsEle />
       <InputSection />
       <Reseter />

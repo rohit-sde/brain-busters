@@ -13,19 +13,20 @@ const InputSection = () => {
   const isPlayStart = useSelector((v: gamestate) => v.Board.isPlayStart);
 
   const [playersArray, SetPlayersArray] = useState([...playersDetails]);
-  const playerstime = playersArray.map((ele: object) => ele.time);
+  const playerstime = playersArray.map((ele) => ele.time);
   const [time, setTime] = useState(playerstime);
   const dispatch = useDispatch();
 
-  function handleInputs(e: any, type) {
+  function handleInputs(e: React.ChangeEvent<HTMLInputElement>, type: string) {
+    // const targeted = e.target as HTMLInputElement;
     const value = parseFloat(e.target.value);
-    let min = parseFloat(e.target.getAttribute("min"));
-    let max = parseFloat(e.target.getAttribute("max"));
+    const min = parseFloat(e.target.getAttribute("min") ?? "");
+    const max = parseFloat(e.target.getAttribute("max") ?? "");
 
     if (value < min) {
-      e.target.value = min;
+      e.target.value = String(min);
     } else if (value > max) {
-      e.target.value = max;
+      e.target.value = String(max);
     }
 
     if (type == "grid") {

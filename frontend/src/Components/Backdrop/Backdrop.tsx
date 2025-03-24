@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Backdrop = ({ children }) => {
+const Backdrop: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <Backdroper>{children}</Backdroper>;
 };
 

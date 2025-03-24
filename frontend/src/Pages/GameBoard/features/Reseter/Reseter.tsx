@@ -16,8 +16,9 @@ const Reseter = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  function buttonHandler(v: object) {
-    const text = v.target.innerText;
+  function buttonHandler(v: Event) {
+    const targeted = v.target as HTMLElement;
+    const text = targeted.innerText;
     if (text == "Reset") {
       dispatch(
         SetPlayerDetails(
