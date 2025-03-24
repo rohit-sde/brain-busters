@@ -1,0 +1,74 @@
+name: Deploy App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  ECR_REPOSITORY_URL: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_ECR_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPOSITORY }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup SSH
+        id: ssh
+        uses: rajpal-se/configure-ssh-credentials@v1
+        with:
+          hostname: ${{ secrets.VPS_IP_ADDRESS }}
+          key: ${{ secrets.VPS_USER_SSH_KEY }}
+
+      - name: FE - Install Deps
+        run: cd frontend && npm i
+
+      - name: FE - Build
+        run: cd frontend && npm run build:prod
+
+      - name: BE - Install Deps
+        run: cd backend && npm i
+
+      - name: Setup FE
+        run: cp -r frontend/dist/* backend/public
+
+      - name: Build Docker image
+        run: docker build -f backend/Dockerfile -t ${{ env.ECR_REPOSITORY_URL }}:latest backend
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_ECR_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Push Docker image to AWS ECR
+        run: docker push ${{ env.ECR_REPOSITORY_URL }}:latest
+
+      - name: Deploying the app
+        uses: rajpal-se/deploy-docker-container@v1
+        with:
+          aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
+          aws-ecr-region: ${{ secrets.AWS_ECR_REGION }}
+          aws-ecr-repository: ${{ secrets.AWS_ECR_REPOSITORY }}
+          app-container-name: ${{ secrets.APP_CONTAINER_NAME }}
+          app-port-mapping: ${{ secrets.APP_PORT_MAPPING }}
+          app-env-file: ${{ secrets.APP_ENV_FILE }}
+
+      - name: Remove dangling Docker images
+        uses: rajpal-se/cleanup-docker@v1
+        with:
+          aws-ecr-repository: ${{ secrets.AWS_ECR_REPOSITORY }}
+          aws-ecr-region: ${{ secrets.AWS_ECR_REGION }}
