@@ -31,7 +31,7 @@ const CurrentPlayer = () => {
 
   useEffect(() => {
     SetPlayersArray([...PlayersDetails]);
-  }, [PlayersDetails, CurrentTurn]);
+  }, [PlayersDetail, CurrentTurn]);
   const SortedList = [...PlayersArray]?.sort(
     (a: { Score: number }, b: { Score: number }) => b.Score - a.Score
   );
