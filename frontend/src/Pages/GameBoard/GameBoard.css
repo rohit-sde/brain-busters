@@ -1,7 +1,8 @@
 .GameBoard {
   height: 100%;
   width: 85%;
-  min-width: 650px;
+  min-width: 315px;
+  /* background-color: aliceblue; */
   max-width: 1150px;
   display: flex;
   flex-direction: column;
@@ -29,26 +30,59 @@
 
 .instructions-box h2 {
   mix-blend-mode: hard-light;
-  font-size: 2.8rem;
+  font-size: clamp(40px, 1vw, 140px);
   color: var(--text-color);
   margin-bottom: 10px;
 }
 
 .instructions-box .subheading {
   mix-blend-mode: hard-light;
-  font-size: 2rem;
   color: var(--text-color);
   margin-bottom: 15px;
+  font-size: clamp(20px, 1vw, 140px);
 }
 
 .instructions-list {
   mix-blend-mode: hard-light;
   text-align: left;
-  font-size: 1.3rem;
+  font-size: clamp(15px, 1vw, 140px);
   color: var(--text-color);
 }
 
 .instructions-list li {
   margin-bottom: 10px;
   line-height: 1.5;
+}
+
+.boardSetter {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+  border: 1px solid var(--primary-30);
+  box-shadow: 0px -1px 5px 0.5px var(--primary-30);
+}
+
+@media screen and (max-width: 550px) {
+  .Lowerpart {
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+  }
+
+  .boardSetter {
+    width: 84%;
+    padding: 4px 0px;
+    flex-direction: row;
+  }
+
+  .instructions-box {
+    margin-top: -190px;
+  }
 }

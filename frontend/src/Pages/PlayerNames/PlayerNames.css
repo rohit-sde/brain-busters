@@ -9,7 +9,7 @@
   /* border: 1px solid white; */
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 550px) {
   .outterLayer {
     width: 100%;
     margin: 0px 20px;

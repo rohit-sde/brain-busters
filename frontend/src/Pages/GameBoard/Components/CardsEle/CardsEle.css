@@ -13,8 +13,8 @@
 }
 
 .CardsEleWrapper > span > button {
-  height: 45%;
-  min-height: 25px;
+  height: clamp(18px, 45%, 40px);
+  font-size: clamp(11px, 2.5vw, 16px);
   aspect-ratio: 2/1;
   border: none;
   border-radius: 7px;
@@ -29,4 +29,17 @@
 
 .currentType {
   box-shadow: 0px 0px 0px 1.5px var(--text-color);
+}
+
+@media screen and (max-width: 550px) {
+  .CardsEleWrapper {
+    height: 90%;
+  }
+
+  .CardsEleWrapper > span {
+    flex-direction: column;
+  }
+
+  .CardsEleWrapper > button {
+  }
 }

@@ -1,6 +1,6 @@
 .currentPlayerWrapper {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   border: 1px solid white;
   border-radius: 10px;

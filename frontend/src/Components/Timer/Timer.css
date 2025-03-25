@@ -9,7 +9,7 @@
 }
 
 .timer > span {
-  font-size: calc(3vw + 0.8rem);
+  font-size: clamp(25px, 4vw, 55px);
 }
 
 /* Animation when the time is near expiring */

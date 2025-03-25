@@ -49,7 +49,7 @@ export default CurrentCard;
 
 const StyledContainer = styled.div`
   display: flex;
-  font-size: 20px;
+  font-size: clamp(0.9rem, 2.5vw, 20px);
   justify-content: space-evenly;
   // border: 1px solid aquamarine;
   border-radius: 20px;
@@ -61,7 +61,7 @@ const StyledContainer = styled.div`
 const ImageSpan = styled.span`
   // border: 1px solid var(--secondary-20);
   box-shadow: 0px 0px 8px 0.7px var(--secondary-20);
-  height: 80px;
+  height: clamp(70px, 8vw, 100px);
   display: flex;
   text-align: center;
   justify-content: center;
@@ -81,6 +81,7 @@ const WrapperDeatails = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding-left: 15px;
   flex: 0.9;
 `;
 

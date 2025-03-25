@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import CurrentCard from "../../Components/CurrentPlayerCard/CurrentCard";
-import "./CurrentPlayer.css";
+// import "./CurrentPlayer.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { gamestate } from "../../../../Store/AboutGame";
@@ -55,8 +55,9 @@ export default CurrentPlayer;
 
 const StyledWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
+  padding: 0px 6px;
   // border: 1px solid white;
   border-radius: 10px;
   margin-bottom: 2rem;

@@ -47,7 +47,7 @@
 
 /* media querry for mobile view */
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 550px) {
   .Title {
     font-size: 3rem;
   }

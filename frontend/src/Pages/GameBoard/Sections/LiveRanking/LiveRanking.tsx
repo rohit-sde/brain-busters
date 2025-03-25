@@ -50,7 +50,7 @@ const LiveRanking = () => {
   return (
     <div
       className="container"
-      style={{ width: `${WindowSize < 800 ? "fit-content" : ""}` }}
+      style={{ width: `${WindowSize < 800 ? "80%" : ""}` }}
     >
       <div className="ranker">
         {sortedPlayers?.map((player, i) => {

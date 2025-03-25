@@ -45,7 +45,7 @@
   outline: 1px;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 550px) {
   .noOfPlayers {
     margin: 0.4rem;
     font-size: 1.2rem;

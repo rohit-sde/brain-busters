@@ -5,9 +5,9 @@
   border-radius: 9px;
   width: 20%;
   /* width: fit-content; */
-  /* min-width: 100px; */
+  /* min-width: 500px; */
   height: fit-content;
-  min-height: 350px;
+  /* min-height: 350px; */
   padding: 20px;
 }
 
@@ -112,4 +112,15 @@
 /* Styling the thumb on hover (to make it more visible when hovered) */
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--secondary-20); /*Darker color when hovered*/
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    padding: 0px;
+    margin-top: -20px;
+  }
+  .ranker {
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
 }

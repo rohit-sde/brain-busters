@@ -101,6 +101,10 @@
   --text-color: #e8e8e8;
 } */
 
+html {
+  height: -webkit-fill-available;
+}
+
 body {
   font-family: "Roboto";
   color: antiquewhite;
@@ -108,22 +112,19 @@ body {
   color: var(--text-color);
   height: 100vh;
   width: 100vw;
+  height: -webkit-fill-available;
+  padding: 0px;
   margin: 0px;
 }
 
 #root {
   height: 100%;
   width: 100%;
+  overflow: hidden;
   background-color: var(--bg-color);
   color: var(--text-color);
   display: flex;
   flex-direction: column;
   /* align-items: center;
   justify-content: center; */
-}
-
-@media screen and (max-width: 430px) {
-  body {
-    height: calc(100vh - 17px);
-  }
 }
