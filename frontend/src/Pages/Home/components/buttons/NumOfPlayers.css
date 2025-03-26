@@ -1,4 +1,5 @@
 .noOfPlayers {
+  display: flex;
   font-family: "Atma", system-ui;
   font-weight: 500;
   border: 1px solid var(--primary-30);
@@ -7,7 +8,7 @@
   cursor: pointer;
   font-size: 1.5rem;
   padding: 10px;
-  text-align: center;
+  justify-content: center;
   transition: all 0.2s linear;
   /* background-color: transparent; */
 }
@@ -43,6 +44,22 @@
 
 .playerNumInput:focus-visible {
   outline: 1px;
+}
+
+.increDecre {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.increDecre > button {
+  height: 15px;
+  width: 22px;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  text-align: center;
+  padding: 0px;
 }
 
 @media screen and (max-width: 550px) {

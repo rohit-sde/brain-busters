@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./NumOfPlayers.css";
+import { FaCircleChevronDown, FaCircleChevronUp } from "react-icons/fa6";
 
 interface arguments {
   value: number;
@@ -42,6 +43,20 @@ const NumOfPlayers = ({
           value={inputvalue}
           onChange={handleInput}
         />
+        <span className="increDecre">
+          <button
+            onClick={() => setInputvalue((prev) => prev + 1)}
+            disabled={inputvalue >= 8}
+          >
+            <FaCircleChevronUp />
+          </button>
+          <button
+            onClick={() => setInputvalue((prev) => prev - 1)}
+            disabled={inputvalue <= 4}
+          >
+            <FaCircleChevronDown />
+          </button>
+        </span>
       </div>
     );
   }
