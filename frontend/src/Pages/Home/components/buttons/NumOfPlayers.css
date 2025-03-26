@@ -47,7 +47,7 @@
 }
 
 .increDecre {
-  display: flex;
+  display: none;
   flex-direction: column;
   margin-left: 10px;
 }
@@ -63,6 +63,9 @@
 }
 
 @media screen and (max-width: 550px) {
+  .increDecre {
+    display: flex;
+  }
   .noOfPlayers {
     margin: 0.4rem;
     font-size: 1.2rem;

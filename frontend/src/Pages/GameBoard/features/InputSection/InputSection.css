@@ -71,6 +71,15 @@
 }
 
 @media screen and (max-width: 550px) {
+  .SetTime {
+    /* margin-left: -25px; */
+  }
+
+  .minSecGridInput {
+    width: 12px;
+    margin: 0px;
+  }
+
   .InputSectionWrapper {
     height: 90%;
     justify-content: center;

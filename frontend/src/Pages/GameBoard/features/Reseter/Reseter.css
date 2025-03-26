@@ -1,0 +1,50 @@
+.BtnsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  /* border: 1px solid rgb(252, 58, 90); */
+  height: 40%;
+  width: 100%;
+}
+
+.StyledBtns {
+  font-size: clamp(9px, 2.5vw, 18px);
+  background-color: transparent;
+  border: 0.2px solid var(--secondary-20);
+  box-shadow: 0px 1px 10px -2px var(--secondary-20);
+  cursor: pointer;
+  color: var(--text-color);
+  border-radius: 8px;
+  width: 75%;
+  aspect-ratio: 4/1;
+  transition: all 0.3s;
+}
+
+.StyledBtns:hover {
+  background-color: var(--secondary-20);
+}
+
+.homeBtn {
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 0px 0.5px 1.8px var(--secondary-20);
+  cursor: pointer;
+  color: var(--text-color);
+  border-radius: 40px;
+  width: 35%;
+  min-width: 40px;
+  aspect-ratio: 2/1;
+  transition: all 0.3s;
+}
+
+.homeBtn:hover {
+  transform: scale(1.1);
+  background-color: var(--secondary-20);
+}
+
+@media screen and (max-width: 550px) {
+  .BtnsWrapper {
+    height: 100%;
+  }
+}

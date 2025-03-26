@@ -6,6 +6,7 @@ import {
   SetCards,
   SetPlayerDetails,
 } from "../../../../Store/AboutGame";
+import { toast } from "react-toastify";
 
 const InputSection = () => {
   const playersDetails = useSelector((v: gamestate) => v.About.PlayersDetails);
@@ -24,12 +25,28 @@ const InputSection = () => {
     const max = parseFloat(e.target.getAttribute("max") ?? "");
 
     if (value < min) {
+      error(`Please type value >= ${min}`);
       e.target.value = String(min);
+      if (type == "min") {
+        setTime((prev) => prev.map((val) => ({ ...val, min: min })));
+      } else if (type == "sec") {
+        setTime((prev) => prev.map((val) => ({ ...val, sec: min })));
+      }
+      return;
     } else if (value > max) {
+      error(`Please type value <= ${max}`);
       e.target.value = String(max);
+      if (type == "min") {
+        setTime((prev) => prev.map((val) => ({ ...val, min: max })));
+      } else if (type == "sec") {
+        setTime((prev) => prev.map((val) => ({ ...val, sec: max })));
+      }
+      return;
     }
 
+    console.log("4");
     if (type == "grid") {
+      console.log("5");
       dispatch(SetCards(value));
     } else if (type == "min") {
       setTime((prev) => prev.map((val) => ({ ...val, min: value })));
@@ -40,6 +57,9 @@ const InputSection = () => {
   // console.log("min", time[0].min);
   // console.log("sec", time[0].sec);
 
+  function error(str: string) {
+    toast.error(str);
+  }
   function handleSetButton() {
     SetPlayersArray((prev) =>
       prev.map((val, i) => ({ ...val, time: time[i] }))
@@ -80,7 +100,7 @@ const InputSection = () => {
             disabled={isPlayStart}
             onChange={(e) => handleInputs(e, "min")}
             min={0}
-            max={10}
+            max={9}
           />
         </span>
         <span>

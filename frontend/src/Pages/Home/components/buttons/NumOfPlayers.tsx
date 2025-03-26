@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import "./NumOfPlayers.css";
 import { FaCircleChevronDown, FaCircleChevronUp } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 interface arguments {
   value: number;
@@ -19,14 +20,17 @@ const NumOfPlayers = ({
   // useEffect(() => {
   //   clickhandler?.(inputvalue);
   // }, [inputvalue]);
-  function handleInput(val: object) {
+  function handleInput(val: InputEvent) {
     const currentValue = val?.target?.value;
     if (currentValue >= 4 && currentValue <= 8) {
       setInputvalue(Number(currentValue));
       clickhandler?.(Number(currentValue));
       return;
     }
-    setInputvalue((prev) => prev);
+    toast.error("Please type number B/W 4 & 8");
+    // setInputvalue((prev) => prev);
+    const defltval = currentValue < 4 ? 4 : 8;
+    setInputvalue(defltval);
   }
   if (isInput) {
     return (

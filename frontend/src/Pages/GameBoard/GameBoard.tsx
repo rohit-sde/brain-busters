@@ -10,6 +10,7 @@ import GridCards from "./Sections/GridCards/GridCards.tsx";
 import { fetchr } from "../../funcs & conts/fetcher.ts";
 import Backdrop from "../../Components/Backdrop/Backdrop.tsx";
 import Modal from "../../Components/Modal/Modal.tsx";
+import { ToastContainer } from "react-toastify";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const GameBoard = () => {
 
   return (
     <>
+      <ToastContainer />
       {!isPlayStart && (
         <Backdrop>
           <div className="instructions-box">
