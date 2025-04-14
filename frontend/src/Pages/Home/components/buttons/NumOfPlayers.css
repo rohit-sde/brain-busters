@@ -46,38 +46,24 @@
   outline: 1px;
 }
 
-/* .increDecre {
-    display: none;
-    flex-direction: column;
-    margin-left: 10px;
+.indeBtn {
+  display: none;
+}
+@media screen and (max-width: 550px) {
+  .indeBtn {
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    margin: 0px 4px;
+    color: var(--secondary-20);
+    padding: 0px;
   }
 
-  .increDecre > button {
-    height: 15px;
-    width: 22px;
-    background-color: transparent;
-    border: none;
-    color: var(--text-color);
-    text-align: center;
-    padding: 0px;
-  } */
-
-.indeBtn {
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-  font-size: 24px;
-  margin: 0px 4px;
-  color: var(--secondary-20);
-  padding: 0px;
-}
-
-.indeBtn:disabled {
-  color: rgb(148, 43, 43);
-}
-
-@media screen and (max-width: 550px) {
+  .indeBtn:disabled {
+    color: rgb(148, 43, 43);
+  }
   .increDecre {
     display: flex;
   }

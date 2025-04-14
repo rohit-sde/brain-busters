@@ -44,9 +44,7 @@ const InputSection = () => {
       return;
     }
 
-    console.log("4");
     if (type == "grid") {
-      console.log("5");
       dispatch(SetCards(value));
     } else if (type == "min") {
       setTime((prev) => prev.map((val) => ({ ...val, min: value })));

@@ -27,7 +27,9 @@
   user-select: none;
   cursor: pointer;
   /* animation:  0.9s ease-in-out; */
+  transition: all 0.3s;
 }
+
 .flipped {
   /* animation: all 0.9s ease-in-out; */
   background-color: transparent;

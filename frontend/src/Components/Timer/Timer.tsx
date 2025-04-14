@@ -53,7 +53,6 @@ const Timer = ({ Size = 801 }: { Size?: number }) => {
 
   function nextTurn() {
     const Time = { min: min, sec: sec };
-    // console.log("hi", Time, currentId);
     dispatch(SetLeftTime({ currentPlayerId: currentId, Time }));
 
     // Reset the timer for the next turn

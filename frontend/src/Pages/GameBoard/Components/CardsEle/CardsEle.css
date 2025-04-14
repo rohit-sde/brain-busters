@@ -25,6 +25,11 @@
   border: none;
   border-radius: 7px;
   height: clamp(18px, 45%, 40px);
+  transition: 0.1s;
+}
+
+.SelectorBtn:active {
+  transform: scale(0.95);
 }
 
 @media screen and (max-width: 550px) {
