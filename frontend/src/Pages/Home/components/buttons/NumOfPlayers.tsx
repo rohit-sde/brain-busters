@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import "./NumOfPlayers.css";
 import { FaCircleChevronDown, FaCircleChevronUp } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import { CiSquareChevDown, CiSquareChevUp } from "react-icons/ci";
 
 interface arguments {
   value: number;
@@ -38,6 +39,14 @@ const NumOfPlayers = ({
         className={`noOfPlayers ${playerCount > 3 ? "active" : ""}`}
         onClick={() => clickhandler?.(inputvalue)}
       >
+        <button
+          onClick={() => setInputvalue((prev) => prev + 1)}
+          disabled={inputvalue >= 8}
+          className="indeBtn"
+        >
+          {/* <FaCircleChevronUp /> */}
+          <CiSquareChevUp />
+        </button>
         Custom no.
         <input
           className="playerNumInput"
@@ -47,7 +56,15 @@ const NumOfPlayers = ({
           value={inputvalue}
           onChange={handleInput}
         />
-        <span className="increDecre">
+        <button
+          onClick={() => setInputvalue((prev) => prev - 1)}
+          disabled={inputvalue <= 4}
+          className="indeBtn"
+        >
+          <CiSquareChevDown />
+          {/* <FaCircleChevronDown /> */}
+        </button>
+        {/* <span className="increDecre">
           <button
             onClick={() => setInputvalue((prev) => prev + 1)}
             disabled={inputvalue >= 8}
@@ -60,7 +77,7 @@ const NumOfPlayers = ({
           >
             <FaCircleChevronDown />
           </button>
-        </span>
+        </span> */}
       </div>
     );
   }
