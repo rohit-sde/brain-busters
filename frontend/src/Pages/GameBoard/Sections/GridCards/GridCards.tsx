@@ -11,7 +11,11 @@ import {
 } from "../../../../Store/AboutGame";
 
 interface grid {
-  TypeOfCards: string;
+  TypeOfCards: {
+    id: number;
+    val: string;
+    type: string;
+  };
   GridSize: number;
 }
 
@@ -46,7 +50,7 @@ const GridCards = () => {
     setFlipped([]);
     setCardsArray(() => {
       const cards: { id: number; value: string }[] = handleCardsDetails(
-        grid?.TypeOfCards,
+        grid?.TypeOfCards?.type,
         grid?.GridSize
       );
       return cards;

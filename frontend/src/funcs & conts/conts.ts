@@ -1148,3 +1148,10 @@ export const appreciationLines: string[] = [
   "Absolutely fantastic! You're a memory mastermind!",
   "Awesome work! You’ve got a memory like no other!",
 ];
+
+export const CardTypes: { id: number; val: string; type: string }[] = [
+  { id: 0, val: "😁😉", type: "EMOJIS" },
+  { id: 1, val: "ABC", type: "ABC" },
+  { id: 2, val: "123", type: "NUM" },
+  { id: 3, val: "◯◼△", type: "SHAPES" },
+];

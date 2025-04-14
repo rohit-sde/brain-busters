@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { CardTypes } from "../funcs & conts/conts";
 
 // Types for the state
 
@@ -22,7 +23,11 @@ interface AboutPlayersState {
 
 interface BoardSettingsState {
   Cards: {
-    TypeOfCards: string; // Assuming 'TypeOfCards' is a string, update if necessary
+    TypeOfCards: {
+      id: number;
+      val: string;
+      type: string;
+    }; // Assuming 'TypeOfCards' is a string, update if necessary
     GridSize: number;
   };
   isPlayStart: boolean;
@@ -120,7 +125,7 @@ const Board_Settings = createSlice({
   name: "Board_Settings",
   initialState: {
     Cards: {
-      TypeOfCards: "ABC",
+      TypeOfCards: CardTypes[0],
       GridSize: 4,
     },
     isPlayStart: false,
