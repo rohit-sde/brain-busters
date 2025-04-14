@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { gamestate } from "../../Store/AboutGame";
 import { darkColors } from "./const/darkColors";
 import { lightColors } from "./const/lightColors";
-import { FaArrowDown } from "react-icons/fa";
+import { FiMinus, FiPlus } from "react-icons/fi";
 
 const CustomTheme = () => {
   const theme = useSelector((state: gamestate) => state.Theme.state);
@@ -32,7 +32,7 @@ const CustomTheme = () => {
         className={`arrow ${isExpanded ? "isExpanded" : ""}`}
         onClick={() => setIsExpanded((p) => !p)}
       >
-        <FaArrowDown />
+        {isExpanded ? <FiMinus /> : <FiPlus />}
       </button>
       {colors.colors.map((colors, i) => (
         <Circle
