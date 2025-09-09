@@ -1,17 +1,18 @@
-name: Deploy App
+##### github-actions #####
+name: Deploy Web App
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
-env:
-  ECR_REPOSITORY_URL: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_ECR_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPOSITORY }}
-
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-24.04
+  building-and-deploy:
+    name: Build and Push to Registry
+    runs-on: ubuntu-22.04
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,8 +22,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Setup SSH
-        id: ssh
+      - name: Configure SSH Credentials
         uses: rajpal-se/configure-ssh-credentials@v1
         with:
           hostname: ${{ secrets.VPS_IP_ADDRESS }}
@@ -40,35 +40,39 @@ jobs:
       - name: Setup FE
         run: cp -r frontend/dist/* backend/public
 
-      - name: Build Docker image
-        run: docker build -f backend/Dockerfile -t ${{ env.ECR_REPOSITORY_URL }}:latest backend
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_ECR_REGION }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Download files
+        run: |
+          echo "no download"
+
+      - name: Build Docker image
+        run: cd backend && docker build -f Dockerfile -t ${{ secrets.AWS_ECR_REPOSITORY_URL_PROD }}:latest .
+
       - name: Push Docker image to AWS ECR
-        run: docker push ${{ env.ECR_REPOSITORY_URL }}:latest
+        run: docker push ${{ secrets.AWS_ECR_REPOSITORY_URL_PROD }}:latest
 
-      - name: Deploying the app
-        uses: rajpal-se/deploy-docker-container@v1
+      - name: Deploy Docker Container
+        uses: rajpal-se/deploy-docker-container@v5
         with:
-          aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
-          aws-ecr-region: ${{ secrets.AWS_ECR_REGION }}
-          aws-ecr-repository: ${{ secrets.AWS_ECR_REPOSITORY }}
+          aws-account-number: ${{ secrets.AWS_ACCOUNT_NUMBER }}
+          aws-ecr-region: ${{ secrets.AWS_DEFAULT_REGION }}
+          aws-ecr-repository: ${{ secrets.AWS_ECR_REPOSITORY_PROD }}
           app-container-name: ${{ secrets.APP_CONTAINER_NAME }}
-          app-port-mapping: ${{ secrets.APP_PORT_MAPPING }}
-          app-env-file: ${{ secrets.APP_ENV_FILE }}
+          # app-port-mapping: ${{ secrets.APP_PORT_MAPPING }}
+          app-container-ip: ${{ secrets.APP_CONTAINER_IP }}
 
-      - name: Remove dangling Docker images
+      - name: Remove Dangling Docker Images
         uses: rajpal-se/cleanup-docker@v1
         with:
-          aws-ecr-repository: ${{ secrets.AWS_ECR_REPOSITORY }}
-          aws-ecr-region: ${{ secrets.AWS_ECR_REGION }}
+          aws-ecr-repository: ${{ secrets.AWS_ECR_REPOSITORY_PROD }}
+          aws-ecr-region: ${{ secrets.AWS_DEFAULT_REGION }}

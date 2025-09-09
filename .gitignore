@@ -1,4 +1,8 @@
 **/node_modules
 .env
+
+
+
+.env.gh
 .secrets
-.vars
+.variables
